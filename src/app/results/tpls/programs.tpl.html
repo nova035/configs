@@ -1,0 +1,41 @@
+<div class="card-title col-xs-12 pad-t-3 pad-b-5 pad-r-0 pad-l-0">
+    <div class="col-xs-12 margin-t-10 lato-light pad-r-0">
+        <span class="fa-stack fa-lg fs-20 text-dark-green pad-l-3 col-md-4 margin-t-5">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+        </span>
+        &nbsp;
+        <span class="fs-20 col-md-11 pad-0" ng-repeat="chat in chat_list" ng-if="chat.active">
+            <span class="col-xs-12 margin-t-3 pad-0" >
+                <span class="col-md-10 fs-20 margin-t-5 pad-l-0">{{chat.name}}</span>
+                <span class="col-md-2 text-right pad-r-0">
+                    <button class="action-btn action-btn-grid action-btn-default" style="padding-right: 11px; padding-left: 11px; margin-right: -15px;">
+                        <i class="fa fa-navicon fs-16 text-dark-grey"></i>
+                    </button>
+                </span>
+            </span>
+        </span>
+    </div>
+</div>
+<div class="fx-fade-up fx-speed-200 col-xs-12" ui-view="delete"></div>
+<div class="col-xs-12 margin-t-10" ng-if="errors">
+    <drf-err-msg2></drf-err-msg2>
+</div>
+<div class="fx-fade-up fx-speed-500 side-card col-xs-12 pad-0 bg-gray" ui-view="nested-view"></div>
+<div class="col-xs-12" style="bottom: 0; height: 80px; border-top: 1px solid #E0E4E8">
+    <div class="col-xs-12 pad-r-0 pad-b-10">
+        <div class="col-xs-12 pad-l-0 pad-r-0" ng-repeat="chat in chat_list" ng-if="chat.active">
+        <form name="msg_frm" ng-submit="save(msg_frm, $event, chat.messages)" novalidate>
+            <div class="form-group col-md-11 pad-t-10">
+                <textarea class="message-input form-control" rows="2" placeholder="Write message" ng-keypress="$event.which === 13 &amp;&amp; save(msg_frm, $event, chat.messages)" ng-model="msg.text" name="msg" ng-focus="msg.focus"></textarea>
+            </div>
+            <div class="col-md-1 margin-t-15 text-center pad-r-0" ng-if="chat.active">
+                <button class="action-btn action-btn-grid action-btn-default">
+                    <i class="fa fa-arrow-right fs-18 text-dark-grey"></i>
+                </button>
+            </div>
+        </form>
+        </div>
+
+    </div>
+</div>

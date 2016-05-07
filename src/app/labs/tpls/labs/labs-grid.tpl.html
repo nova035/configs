@@ -1,0 +1,23 @@
+<div class="content-header">
+    <div class="action-container content-header-extra pad-r-20">
+        <a tooltip-placement="bottom" tooltip="Add Lab" class="action-btn action-btn-md action-btn-primary" ui-sref="labs.create">
+            <i class="fa fa-plus"></i>
+        </a>
+   </div>
+   <h2 class="content-title">
+        <span class="main-title"><i class="fa fa-building-o"></i> Labs</span>
+   </h2>
+</div>
+<div class="content-control">
+    <!--breadcrumb-->
+    <div ncy-breadcrumb></div>
+    <!--/breadcrumb-->
+</div>
+
+<div class="content-body">
+    <div class="col-xs-12 content-card margin-t-20 margin-b-20">
+        <sil-grid template="labs/tpls/labs/labs-list.tpl.html" grid-for="labs" api-key="labs"
+            data="labs" filters="filters" error="alert">
+        </sil-grid>
+    </div>
+</div>

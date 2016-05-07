@@ -1,0 +1,14 @@
+*.sw*
+*~
+build/
+bin/
+node_modules/
+vendor/
+bower_components/
+.idea/
+coverage/
+.coverage
+karma/karma.conf.js
+html_tests/
+protractor_results/
+npm-debug.log

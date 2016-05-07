@@ -1,0 +1,60 @@
+<div class="col-xs-12">
+    <div class="col-xs-12 margin-t-30 content-card">
+        <div class="col-xs-12 margin-t-10 pad-l-0">
+            <h4 class="lato-light fs-18 text-primary">
+                Please Confirm
+            </h4>
+        </div>
+        <div class="col-xs-12 margin-t-10 pad-l-0">
+            <ul class="defn-text fa-ul">
+                <li>
+                    <i class="fa-li fa fa-arrow-circle-right text-info"></i> List of analytes is complete & current
+                </li>
+                <li>
+                    <i class="fa-li fa fa-arrow-circle-right text-info"></i> Analyzer, reagents, methods & units indicated are ones used for EQA samples.
+                </li>
+            </ul>
+            <p class="lato-light fs-16">
+                To update details select update subscription. If details are satisfactory click confirm subscription to proceed.
+            </p>
+        </div>
+    </div>
+    <div class="col-xs-12 margin-t-15 content-card pad-0">
+         <table class="table table-condensed table-hover table-fixed" style="font-family : 'Lato Light', sans-serif;">
+            <thead class="col-xs-12" style="background-color: #7D2678; color: #eeeeee; padding-left: 3px; padding-right: 3px;">
+                <th class="col-md-3 col-xs-3 fs-15">Analyte</th>
+                <th class="col-md-2 col-xs-2 fs-15">Nickname</th>
+                <th class="col-md-4 col-xs-4 fs-15">Reagent</th>
+                <th class="col-md-3 col-xs-3 fs-15">Method</th>
+            </thead>
+            <tbody>
+                <tr class="col-xs-12 pad-l-0 pad-r-0 bg-white fx-fade-down fx-dur-600 fx-ease-cubic fx-stagger-50" ng-repeat="sub in subscriptions">
+                    <td class="col-md-3 col-xs-3 fs-13 fw-600">
+                        {{sub.analyte_name}} ({{sub.unit_name}})
+                    </td>
+
+                    <td class="col-md-2 col-xs-2 fs-13 fw-600">
+                        {{sub.analyzer_nickname}}
+                    </td>
+
+                    <td class="col-md-4 col-xs-4 fs-13 fw-600">
+                        {{sub.reagent_name}}
+                    </td>
+
+
+                    <td class="col-md-3 col-xs-3 fs-13 fw-600">
+                        {{sub.method_name}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-xs-12 margin-t-15 margin-b-20 pad-l-0">
+        <button ng-click="confirmSubscriptions(subscriptions)" class="btn btn-primary btn-sm">
+            Enroll Program
+        </button>
+        <button class="btn btn-warning btn-sm">
+            Update Subscription
+        </button>
+    </div>
+</div>

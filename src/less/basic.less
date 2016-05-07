@@ -1,0 +1,578 @@
+//solution for mozilla breakages
+table {table-layout:fixed}
+//removes underlines : use case is for links
+.no-underline {
+    text-decoration: none !important;
+}
+
+//to add tab spacing
+.tab-space {
+    padding-left: 5em;
+}
+
+
+/*
+***
+To add other padding/margin classes
+use 'style'-'orientation'-'pixel size'
+***
+*/
+
+// padding  classes
+.pad-0 {
+    padding: 0px !important;
+}
+.pad-10 {
+    padding: 10px;
+}
+
+.pad-15 {
+    padding: 15px !important;
+}
+
+.pad-20 {
+    padding: 20px !important;
+}
+
+.pad-form {
+    padding: 2% 20% 2% 20%;
+}
+
+.pad-r-0 {
+    padding-right: 0px;
+}
+
+.pad-l-0 {
+    padding-left: 0px;
+}
+.pad-l-4 {
+    padding-left: 4px;
+}
+.pad-l-10 {
+    padding-left: 10px;
+}
+.pad-l-20 {
+    padding-left: 20px !important;
+}
+.pad-l-25 {
+    padding-left: 25px !important;
+}
+
+.pad-l-40 {
+    padding-left: 40px;
+}
+
+.pad-l-20p {
+    padding-left: 20%
+}
+
+.pad-l-43p {
+    padding-left: 43%;
+}
+.pad-b-3 {
+    padding-bottom: 3px !important;
+}
+.pad-b-5 {
+    padding-bottom: 5px !important;
+}
+.pad-b-10 {
+    padding-bottom: 10px !important;
+}
+.pad-b-15 {
+    padding-bottom: 15px !important;
+}
+.pad-b-20 {
+    padding-bottom: 20px !important;
+}
+.pad-t-3 {
+    padding-top: 3px;
+}
+.pad-t-5 {
+    padding-top: 5px;
+}
+.pad-t-10 {
+    padding-top: 10px;
+}
+
+.pad-t-20 {
+    padding-top: 20px;
+}
+
+.pad-t-50 {
+    padding-top: 50px;
+}
+
+.pad-h-5 {
+    padding: 0px 5px 0px 5px;
+}
+
+.pad-h-10 {
+    padding: 0px 10px 0px 10px;
+}
+
+.pad-h-15 {
+    padding: 0px 15px 0px 15px;
+}
+
+.pad-h-20 {
+    padding: 0px 20px 0px 20px;
+}
+
+.pad-h-30 {
+    padding: 0px 30px 0px 30px;
+}
+
+.pad-v-10 {
+    padding: 10px 0px 10px 0px;
+}
+
+.pad-v-20 {
+    padding: 20px 0px 20px 0px;
+}
+
+.pad-r-3 {
+    padding-right: 3px;
+}
+
+.pad-r-0 {
+    padding-right: 0px;
+}
+.pad-r-10 {
+    padding-right: 10px;
+}
+
+.pad-r-5 {
+    padding-right: 5px;
+}
+
+.pad-r-20 {
+    padding-right: 20px !important;
+}
+
+margin-0 {
+    margin: 0px !important;
+}
+
+margin-10 {
+    margin: 10px 10px 10px 10px;
+}
+
+margin-20 {
+    margin: 20px;
+}
+
+// h means horizontal
+.margin-h-5 {
+    margin: 0px 5px 0px 5px;
+}
+
+.margin-h--5 {
+    margin: 0px -5px 0px -5px;
+}
+
+.margin-h-10 {
+    margin: 0px 10px 0px 10px;
+}
+
+.margin-h-20 {
+    margin: 0px 20px 0px 20px;
+}
+
+.margin-h-25 {
+    margin: 0px 25px 0px 25px;
+}
+
+.margin-v-20 {
+    margin: 20px 0px 20px 0px;
+}
+
+.margin-t-1 {
+    margin-top: 1px;
+}
+.margin-t-3 {
+    margin-top: 3px;
+}
+.margin-t-5 {
+    margin-top: 5px;
+}
+
+.margin-t-10 {
+    margin-top: 10px;
+}
+
+.margin-t-15 {
+    margin-top: 15px;
+}
+
+.margin-t-20 {
+    margin-top: 20px;
+}
+
+.margin-t-40 {
+    margin-top: 40px;
+}
+.margin-t-50 {
+    margin-top: 50px;
+}
+.margin-t-70 {
+    margin-top: 70px;
+}
+.margin-t-80 {
+    margin-top: 80px;
+}
+.margin-t-100 {
+    margin-top: 100px;
+}
+.margin-t-20p {
+    margin-top: 20%;
+}
+.margin-t-10p {
+    margin-top: 10%;
+}
+.margin-t-50 {
+    margin-top: 50px;
+}
+
+.margin-t-30 {
+    margin-top: 30px;
+}
+
+.margin-t-50 {
+    margin-top: 50px;
+}
+
+.margin-t-250 {
+    margin-top: 250px;
+}
+
+.margin-t--15 {
+    margin-top: -15px;
+}
+.margin-t--10 {
+    margin-top: -10px;
+}
+.margin-t--5 {
+    margin-top: -5px;
+}
+.margin-t--20 {
+    margin-top: -20px;
+}
+
+.margin-t--27 {
+    margin-top: -27px;
+}
+.margin-b--2 {
+    margin-bottom: -2px;
+}
+.margin-b-0 {
+    margin-bottom: 0px !important;
+}
+
+.margin-b-10 {
+    margin-bottom: 10px !important;
+}
+.margin-b-15 {
+    margin-bottom: 15px !important;
+}
+.margin-b-20 {
+    margin-bottom: 20px;
+}
+.margin-b-30 {
+    margin-bottom: 30px;
+}
+.margin-b-70 {
+    margin-bottom: 70px;
+}
+.margin-b-50 {
+    margin-bottom: 50px;
+}
+.margin-b-30 {
+    margin-bottom: 30px !important;
+}
+
+.margin-b-235 {
+    margin-bottom: 235px;
+}
+
+.margin-r-10 {
+    margin-right: 10px;
+}
+.margin-r-5 {
+    margin-right: 5px;
+}
+.margin-r-30 {
+    margin-right: 30px;
+}
+
+.margin-r--10 {
+    margin-right: -10px;
+}
+
+.margin-l-3 {
+    margin-left: 3px;
+}
+.margin-l--10 {
+    margin-left: -10px;
+}
+.margin-l-5 {
+    margin-left: 5px;
+}
+
+.margin-l-10 {
+    margin-left: 10px;
+}
+
+.margin-l-20 {
+    margin-left: 20px;
+}
+
+.margin-l-30 {
+    margin-left: 30px;
+}
+
+.margin-l-40 {
+    margin-left: 40px;
+}
+
+.margin-l-50 {
+    margin-left: 50px;
+}
+
+.margin-l-60 {
+    margin-left: 60px;
+}
+.margin-l-150 {
+    margin-left: 150px;
+}
+
+.margin-l--10 {
+    margin-left: -10px;
+}
+
+.margin-l--15 {
+    margin-left: -15px;
+}
+.margin-r-25{
+ margin-right: 25px;
+}
+.margin-10{
+    margin: 10px;
+}
+
+.margin-20 {
+    margin: 20px;
+}
+
+.display-block {
+    display: inline-block;
+}
+
+.w100{
+    width: 100px;
+}
+
+// adds various fonts weight
+.fw-900 {
+    font-weight: 900;
+}
+
+.fw-800 {
+    font-weight: 800;
+}
+
+.fw-700 {
+    font-weight: 700;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+.fw-500 {
+    font-weight: 500;
+}
+
+
+/*Add different font size*/
+.fs-200 {
+    font-size: 200px;
+}
+.fs-95 {
+    font-size: 95px;
+}
+.fs-120 {
+    font-size: 120px;
+}
+.fs-60 {
+    font-size: 60px;
+}
+.fs-55 {
+    font-size: 55px;
+}
+.fs-50 {
+    font-size: 50px;
+}
+.fs-45 {
+    font-size: 45px;
+}
+.fs-40 {
+    font-size: 40px;
+}
+.fs-35 {
+    font-size: 35px;
+}
+.fs-30 {
+    font-size: 30px;
+}
+.fs-28 {
+    font-size: 28px;
+}
+.fs-26 {
+    font-size: 26px;
+}
+.fs-24 {
+    font-size: 24px;
+}
+.fs-22 {
+    font-size: 22px;
+}
+.fs-20 {
+    font-size: 20px;
+}
+
+.fs-18 {
+    font-size: 18px;
+}
+
+.fs-16 {
+    font-size: 16px;
+}
+.fs-17 {
+    font-size: 17px;
+}
+.fs-15 {
+    font-size: 15px;
+}
+
+.fs-14 {
+    font-size: 14px;
+}
+.fs-13 {
+    font-size: 13px;
+}
+.fs-12 {
+    font-size: 12px;
+}
+.fs-11 {
+    font-size: 11px;
+}
+
+//adds opacity of 0
+invisible {
+    opacity: 0;
+}
+
+//align text-left
+char-left {
+    text-align: left;
+}
+
+.line-divider {
+    border: 1px solid #e0e0e0;
+}
+
+.text-default {
+    color: @black;
+}
+.text-purple {
+    color: #7B1FA2 !important;
+}
+.text-grey {
+    color: darken(#e0e0e0, 20%) !important;
+}
+.text-dark-grey {
+    color: #7a7a7a;
+}
+.text-black {
+    color: #000;
+}
+.text-niceblue {
+    color: #2196F3;
+}
+.text-green {
+    color: #B2DFDB;
+}
+.text-dark-green {
+    color: #388E3C;
+}
+.bg-gray{
+    background-color: darken(#FFFFFF, 3%);
+}
+.bg-white{
+    background-color: #FFFFFF !important;
+}
+.text-blue {
+    color: #7C4DFF;
+}
+.text-white {
+    color: #FFFFFF;
+}
+.pad-t-15 {
+    padding-top: 10px !important;
+}
+
+.center-pad {
+    padding: 10px 30%;
+}
+
+.text-wrap {
+    word-wrap: break-word;
+}
+a {
+    color: #2196F3;
+}
+a:hover {
+    text-decoration: none;
+}
+
+.z100{
+    z-index: 100 ! important
+}
+
+.height-30 {
+    height: 30px !important;
+}
+.height-100 {
+    height: 100px;
+}
+.height-150 {
+    height: 150px;
+}
+.min-height-500{
+    min-height: 500px;
+}
+.search-panel {
+    box-shadow: 2px 3px 2px rgb(201, 201, 201) !important;
+    background-color: rgba(255, 255, 255, 0.82) !important;
+}
+.border-radius-4 {
+    border-radius: 4px !important;
+    color: #2196F3;
+}
+.horizontal-divider {
+    border-top: 1px solid #e0e0e0;
+}
+.vertical-divider {
+    border-right: 1px solid #e0e0e0;
+}
+._720kb-datepicker-calendar{
+    z-index:1500;
+}
+.line-divider-dashed{
+    margin-top: 0px;
+    margin-bottom: 15px;
+    border: 1px dotted #e0e0e0;
+}
+.bg-grey {
+    background-color: #f1f1f4;
+}

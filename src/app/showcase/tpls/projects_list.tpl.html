@@ -1,0 +1,30 @@
+<div class="row pad-t-50" style="height: 100% !important;">
+    <div class="projects-img col-xs-12 pad-0">
+        <div class="projects-overlay col-xs-12 pad-0">
+            <div class="col-xs-12 margin-t-100"></div>
+                <div ui-view="project-detail"></div>
+                <div ng-repeat-start="project in projects" class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-xs-12 project-card pad-t-10 card-container" ui-sref="projects.details({project_id : project.id})" tooltip="Click to view {{project.title}} details" tooltip-placement="bottom">
+                        <div class="col-xs-12 project-title pad-0 lato-light fs-20 fw-600">
+                            {{project.title}}
+                        </div>
+                        <div class="col-xs-12 pad-0 margin-t-10 margin-b-15">
+                            <div class="col-xs-6 pad-0">
+                                <span class="label fs-13" ng-class="{'label-warning' : (project.category === 'Internal'), 'label-success' : (project.category === 'External')}">{{project.category}}</span>
+                            </div>
+                            <div class="col-xs-6 pad-0 text-right">
+                                {{project.start_date | date}}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 pad-0 lato-light fs-14">
+                            {{project.description | limitTo : 250}}{{project.description.length > 250 ? '...' : ''}}
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix hidden-sm hidden-xs " style="margin-bottom: 10px;" ng-if="$index%3==2" ></div>
+                <div class="clearfix visible-sm hidden-md hidden-xs" ng-if="$index%2==1" ></div>
+                <div class="clearfix visible-sm visible-xs" ng-if="$index%2==2"></div>
+                <div ng-repeat-end=""></div>
+        </div>
+    </div>
+</div>

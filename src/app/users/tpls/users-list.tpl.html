@@ -1,0 +1,56 @@
+<div>
+    <div id="no-more-tables" class="col-xs-12 margin-t-15">
+        <table class="table table-hover table-condensed fs-14">
+            <thead>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Billing</th>
+                <th>Admin</th>
+                <th>Active</th>
+                <th></th>
+            </thead>
+            <tbody class="example-animate-container">
+                <tr class="animate-repeat" ng-repeat="user in users | filter: search.query">
+                    <td data-title="Name" class="pad-t-15">
+                        {{user.full_name}}
+                    </td>
+                    <td data-title="Email" class="pad-t-15">
+                        {{user.email}}
+                    </td>
+                    <td data-title="Billing" class="pad-t-15">
+                        <span ng-if="user.is_billing_contact" class="fa-stack fa-lg fs-14 text-success">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span ng-if="!user.is_billing_contact" class="fa-stack fa-lg fs-14 text-danger">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-close fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </td>
+                    <td data-title="Admin" class="pad-t-15">
+                        <span ng-if="user.is_admin_contact" class="fa-stack fa-lg fs-14 text-success">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span ng-if="!user.is_admin_contact" class="fa-stack fa-lg fs-14 text-danger">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-close fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </td>
+                    <td data-title="Active" class="pad-t-15">
+                        {{user.is_active | boolFilter}}
+                    </td>
+                    <td class="text-right">
+                        <a ui-sref="users.edit({user_id:user.id})" class="action-btn action-btn-grid action-btn-success" tooltip="Edit">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody ng-if="users.length===0">
+                <tr><td class="text-center" colspan="9">Sorry, no data is available</td></tr>
+            </tbody>
+        </table>
+        <sil-grid-pagination> </sil-grid-pagination>
+    </div>
+</div>

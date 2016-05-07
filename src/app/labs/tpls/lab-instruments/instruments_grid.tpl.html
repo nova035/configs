@@ -1,0 +1,22 @@
+<div class="content-header">
+    <div class="action-container content-header-extra pad-r-20">
+        <a  tooltip-placement="bottom" tooltip="Add Instrument" class="action-btn action-btn-md action-btn-primary" ui-sref="labs.lab_instruments.add_instrument">
+            <i class="fa fa-plus"></i>
+        </a>
+   </div>
+   <h2 class="content-title">
+        <span class="main-title">
+            <i class="fa fa-sliders"></i> {{::lab.name}} Lab
+        </span>
+   </h2>
+</div>
+<div class="content-control">
+    <!--breadcrumb-->
+    <div ncy-breadcrumb></div>
+    <!--/breadcrumb-->
+</div>
+<div class="col-xs-12 margin-t-30">
+    <div class="col-xs-12">
+        <sil-grid template="labs/tpls/lab-instruments/instruments_list.tpl.html" grid-for="events" api-key="lab_instruments" data="lab_instruments" filters="filters" error="alert"></sil-grid>
+    </div>
+</div>

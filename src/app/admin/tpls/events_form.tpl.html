@@ -1,0 +1,103 @@
+<div class="content-header">
+    <div class="action-container content-header-extra pad-r-20">
+        <a ng-if="edit_view" tooltip-placement="bottom" tooltip="Delete Test Event" class="action-btn action-btn-md action-btn-default" ui-sref="event.add_event" ui-sref-opts="{reload:true}">
+            <i class="fa fa-trash text-danger"></i>
+        </a>
+   </div>
+   <h2 class="content-title">
+        <span class="main-title">
+          <i class="fa {{edit_view ? 'fa-edit' : 'fa-plus-circle'}}"></i> {{edit_view ? 'Edit' : 'Add'}} Test Event
+        </span>
+   </h2>
+</div>
+<div class="content-control">
+    <div ncy-breadcrumb></div>
+</div>
+<div class="col-xs-12">
+    <div ui-view="delete"></div>
+    <div class="col-xs-12">
+      <form name="event_frm"  ng-submit="save(event_frm)" novalidate>
+        <div class="fade-content col-sm-10 col-sm-offset-1 margin-t-20 content-card">
+          <drf-err-msg></drf-err-msg>
+            <div class="col-sm-12 margin-t-20 margin-b-20">
+              <div class="form-group">
+                  <label class="control-label">Name<span class="text-danger">&#42;</span></label>
+                  <input class="form-control" name="name" ng-model="an_event.name" required placeholder="Name" api-checker/>
+              </div>
+              <div class="form-group">
+                  <label for="sample dispatch date" class="control-label">
+                      <span class="fs-14">Sample Dispatch Date <span class="text-danger">&#42;</span>: {{an_event.sample_dispatch_date | date}}</span>
+                  </label>
+                  <datepicker date-format="y-MM-dd">
+                    <input class="form-control margin-b-10" name="sample_dispatch_date" ng-model="an_event.sample_dispatch_date" type="text"  placeholder="yy-MM-dd" required api-checker/>
+                  </datepicker>
+              </div>
+              <div class="form-group">
+                  <label for="start date" class="control-label">
+                      <span class="fs-14">Start Date <span class="text-danger">&#42;</span>: {{an_event.start_date | date}}</span>
+                  </label>
+                  <datepicker date-format="y-MM-dd">
+                    <input class="form-control  margin-b-10" name="start_date" ng-model="an_event.start_date" type="text"  placeholder="yy-MM-dd" required api-checker/>
+                  </datepicker>
+              </div>
+              <div class="form-group">
+                  <label for="end date" class="control-label">
+                      <span class="fs-14">End Date <span class="text-danger">&#42;</span>: {{an_event.end_date | date}}</span>
+                  </label>
+                  <datepicker date-format="y-MM-dd">
+                    <input class="form-control margin-b-10" name="end_date" ng-model="an_event.end_date" type="text"  placeholder="yy-MM-dd" required api-checker/>
+                  </datepicker>
+              </div>
+              <div class="form-group">
+                  <label for="expected report date" class="control-label">
+                      <span class="fs-14">Expected Report Date <span class="text-danger">&#42;</span>: {{an_event.expected_report_date | date}}</span>
+                  </label>
+                  <datepicker date-format="y-MM-dd">
+                    <input class="form-control margin-b-10" name="expected_report_date" ng-model="an_event.expected_report_date" type="text"  placeholder="yy-MM-dd" required api-checker/>
+                  </datepicker>
+              </div>
+              <div class="form-group">
+                  <label class="control-label">Description</label>
+                  <textarea class="form-control" name="description" ng-model="an_event.description" placeholder="Description" rows="2" api-checker></textarea>
+              </div>
+              <div class="form-group checkbox">
+                  <label>
+                    <input type="checkbox" id="active" name="active" ng-model="an_event.active" tooltip="Check if Test Event is not retired" api-checker >
+                    Active
+                   </label>
+              </div>
+            </div>
+        </div>
+        <div class="fade-content col-sm-10 col-sm-offset-1 margin-t-20 content-card">
+          <div class="col-xs-12 category-title">
+                <h4 class="lato-light fw-500 fs-22 margin-b-10">Programs</h4>
+                <div class="form-group input-group">
+                    <span class="input-group-addon" id="basic-addon1">
+                      <i class="fa fa-search"></i>
+                    </span>
+                    <input class="form-control" ng-model="program.query" placeholder="Search Programs">
+                </div>
+            </div>
+          <div class="service-list col-xs-12 pad-0 margin-b-20">
+            <div class="service-item col-xs-12 pad-0" ng-repeat="program in programs | filter : program.query">
+              <div class="col-md-10 col-xs-8 margin-t-10 margin-b-0">
+                {{program.name}}
+              </div>
+              <div class="col-md-2 col-xs-4 margin-t-0">
+                <div class="form-group checkbox">
+                  <label>
+                    <input type="checkbox" id="selected" name="selected" ng-model="program.selected" tooltip-placement="bottom" tooltip="Check Program to add to Test Event" api-checker ng-change="manageProgramEvents(program)">
+                    Add
+                   </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pull-left col-sm-10 col-sm-offset-1 pad-0 margin-t-10 margin-b-20">
+          <button class="btn btn-primary">Save</button>
+          <a class="margin-l-10 btn btn-default margin-l-5" ui-sref="dashboard.events">Cancel</a>
+        </div>
+      </form>
+    </div>
+</div>

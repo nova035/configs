@@ -1,0 +1,42 @@
+<div>
+    <div id="no-more-tables" class="col-xs-12 margin-t-15">
+        <table class="table table-hover fs-14">
+            <thead>
+                <th>Name</th>
+                <th class="text-center">Active</th>
+                <th></th>
+            </thead>
+            <tbody class="example-animate-container">
+                <tr class="animate-repeat" ng-repeat="lab in labs | filter: search.query">
+                    <td data-title="Name" class="pad-t-15">
+                        {{lab.name}}
+                    </td>
+                    <td data-title="Active" class="pad-t-15 text-center">
+                        <span>
+                            <span ng-if="lab.active" class="fa-stack fa-lg fs-14 text-success">
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                              <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                            </span>
+                            <span ng-if="!lab.active" class="fa-stack fa-lg fs-14 text-danger">
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                              <i class="fa fa-close fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </span>
+                    </td>
+                    <td data-title="Actions" class="text-right">
+                        <a ui-sref="labs.lab_programs({lab_id:lab.id})" class="btn btn-primary">Analytes</a>
+                        <a ui-sref="labs.lab_instruments({lab_id:lab.id})" class="btn btn-warning margin-h-10">Instruments</a>
+                        <a ui-sref="labs.report({lab_id:lab.id})" class="btn btn-info margin-r-10">Reports</a>
+                        <a ui-sref="labs.edit({lab_id:lab.id})" class="action-btn action-btn-grid action-btn-success" tooltip="Edit">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody ng-if="labs.length===0">
+                <tr><td class="text-center" colspan="9">Sorry, no data is available</td></tr>
+            </tbody>
+        </table>
+        <sil-grid-pagination> </sil-grid-pagination>
+    </div>
+</div>

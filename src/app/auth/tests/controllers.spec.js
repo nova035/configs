@@ -1,0 +1,401 @@
+(function () {
+    "use strict";
+
+    describe("Testing the auth login controller: ", function () {
+        var controller, data, root, scope, SERVER_URL, httpBackend, state;
+
+        beforeEach(function () {
+            module("ui.router");
+            module("huqasAppConfig");
+            module("huqas.auth.services");
+            module("huqas.auth.controllers");
+
+            inject(["$rootScope", "$controller", "$httpBackend", "SERVER_URL",
+                "huqas.auth.services.login", "$state",
+                function ($rootScope, $controller, $httpBackend, url, loginService, $state) {
+                    root = $rootScope;
+                    scope = root.$new();
+                    SERVER_URL = url;
+                    state = $state;
+                    httpBackend = $httpBackend;
+                    loginService = loginService;
+                    data = {
+                        $scope : scope,
+                        SERVER_URL : url
+                    };
+                    controller = function () {
+                        return $controller("huqas.auth.controllers.login", data);
+                    };
+                }
+            ]);
+        });
+
+        it("should test auth login controller",
+        inject(["$state", function ($state) {
+            controller("huqas.auth.controllers.login");
+            spyOn($state, "go");
+        }]));
+
+        it("should call backend and login and save user credentials: success",
+        inject(["$httpBackend", "$controller", "$rootScope", "$state", "huqas.auth.services.login",
+            function ($httpBackend, $controller, $rootScope, $state, srvc) {
+                var obj = {username : "owagaantony@gmail.com", password: "owaga"};
+                var s = $rootScope.$new();
+                $httpBackend.expectPOST(SERVER_URL + "o/token/").respond(200);
+                $httpBackend.expectGET(SERVER_URL + "api/v1/users/me/")
+                    .respond(200, {email: ""});
+
+                spyOn(srvc, "login").and.callThrough();
+                spyOn(srvc, "loadState").and.returnValue(null);
+                spyOn(srvc, "clearState");
+                spyOn($state, "go");
+                $controller("huqas.auth.controllers.login", {
+                    "$scope": s,
+                    "$state": $state,
+                    "huqas.auth.services.login": srvc
+                });
+
+                s.submitUser(obj);
+
+                expect(srvc.login).toHaveBeenCalledWith(obj);
+                $httpBackend.flush();
+                expect(srvc.clearState).toHaveBeenCalled();
+            }
+        ]));
+
+        it("should call backend and login and save user credentials: success (load prev state)",
+        inject(["$httpBackend", "$controller", "$rootScope", "$state", "huqas.auth.services.login",
+            function ($httpBackend, $controller, $rootScope, $state, srvc) {
+                var obj = {username : "owagaantony@gmail.com", password: "owaga"};
+                var s = $rootScope.$new();
+                $httpBackend.expectPOST(SERVER_URL + "o/token/").respond(200);
+                $httpBackend.expectGET(SERVER_URL + "api/v1/users/me/")
+                    .respond(200, {email: ""});
+
+                spyOn(srvc, "login").and.callThrough();
+                spyOn(srvc, "loadState").and.returnValue({"name": "next"});
+                spyOn(srvc, "clearState");
+                spyOn($state, "go");
+                $controller("huqas.auth.controllers.login", {
+                    "$scope": s,
+                    "$state": $state,
+                    "huqas.auth.services.login": srvc
+                });
+
+                s.submitUser(obj);
+
+                expect(srvc.login).toHaveBeenCalledWith(obj);
+                $httpBackend.flush();
+                expect(srvc.clearState).toHaveBeenCalled();
+            }
+        ]));
+
+        it("should call backend and login and save user credentials: fail",
+        inject(["$httpBackend", function ($httpBackend) {
+            controller("huqas.auth.controllers.login");
+            var obj = {username : "owagaantony@gmail.com", password: "owaga"};
+            scope.submitUser(obj);
+            $httpBackend.expectPOST(SERVER_URL + "o/token/").respond(200, obj);
+            $httpBackend.expectGET(SERVER_URL + "api/v1/users/me/").respond(400, {email: ""});
+            $httpBackend.flush();
+            expect(scope.login_err).not.toEqual("");
+        }]));
+
+        it("should call backend and login a user: success",
+        inject(["$httpBackend", function ($httpBackend) {
+            controller("huqas.auth.controllers.login");
+            var obj = {date : ""};
+            scope.submitUser(obj);
+            $httpBackend.expectPOST(SERVER_URL + "o/token/").respond(400, {email: ""});
+            $httpBackend.flush();
+        }]));
+    });
+
+    describe("Test logout controller", function () {
+
+        var controller, credz, httpBackend, state, payload, rootScope;
+
+        beforeEach(function () {
+            module("ui.router");
+            module("huqasAppConfig");
+            module("huqas.auth.oauth2");
+            module("huqas.auth.services");
+            module("huqas.auth.states");
+            module("huqas.auth.controllers");
+
+            inject(["$controller", "$httpBackend", "CREDENTIALS", "$window", "$rootScope",
+                "huqas.auth.services.login", "$state", "api.oauth2",
+                function ($controller, $httpBackend, CREDZ, $window, r, l, $state, oauth2) {
+                    credz = CREDZ;
+                    state = $state;
+                    httpBackend = $httpBackend;
+                    rootScope = r;
+                    spyOn(oauth2, "getToken").and.returnValue({"access_token": "token"});
+                    payload =
+                        "token=" + "token" +
+                        "&client_id=" + credz.client_id +
+                        "&client_secret=" + credz.client_secret;
+                    controller = function () {
+                        return $controller("huqas.auth.controllers.logout", {
+                            "$scope": rootScope.$new()
+                        });
+                    };
+                }
+            ]);
+        });
+
+        it("should logout a user on successful revoke of token", function () {
+            httpBackend.expectPOST(credz.revoke_url, payload).respond(200, {});
+            spyOn(state, "go");
+            controller();
+            httpBackend.flush();
+            httpBackend.verifyNoOutstandingExpectation();
+            httpBackend.verifyNoOutstandingRequest();
+            expect(state.go).toHaveBeenCalled();
+        });
+
+        it("should logout a user on failed revoke of token", function () {
+            httpBackend.expectPOST(credz.revoke_url, payload).respond(500, {"error": "a"});
+            spyOn(state, "go");
+            controller();
+            httpBackend.flush();
+            httpBackend.verifyNoOutstandingExpectation();
+            httpBackend.verifyNoOutstandingRequest();
+            expect(state.go).toHaveBeenCalled();
+        });
+    });
+
+    describe("Test reset pwd controller", function () {
+        var controller, rootScope, SERVER_URL, httpBackend, state, log;
+
+        beforeEach(function () {
+            module("ui.router");
+            module("huqasAppConfig");
+            module("huqas.auth.services");
+            module("huqas.auth.controllers");
+
+            inject(["$rootScope", "$controller", "$httpBackend", "SERVER_URL",
+                "$state", "$log",
+                function ($rootScope, $controller, $httpBackend, url, $state, $log) {
+                    rootScope = $rootScope;
+                    SERVER_URL = url;
+                    state = $state;
+                    httpBackend = $httpBackend;
+                    log = $log;
+
+                    controller = function (data) {
+                        return $controller("huqas.auth.controllers.reset_pwd", data);
+                    };
+                }
+            ]);
+        });
+
+        it("should request for a password reset", function () {
+            httpBackend.expectPOST(SERVER_URL + "api/rest-auth/password/reset/", {
+                "email": "mail@domain.com"
+            }).respond(200);
+
+            spyOn(log, "error");
+            spyOn(state, "go");
+            var data = {
+                "$scope": rootScope.$new(),
+                "$state": state,
+                "$log": log
+            };
+            data.$scope.email = "mail@domain.com";
+
+            controller(data);
+            data.$scope.reset_pwd();
+
+            httpBackend.flush();
+            httpBackend.verifyNoOutstandingRequest();
+            httpBackend.verifyNoOutstandingExpectation();
+
+            expect(state.go).toHaveBeenCalledWith("login", {"reset_pwd": "true"});
+            expect(log.error).not.toHaveBeenCalled();
+        });
+
+        it("should show an error on fail to request for a password reset", function () {
+            httpBackend.expectPOST(SERVER_URL + "api/rest-auth/password/reset/", {
+                "email": "mail@domain.com"
+            }).respond(500);
+
+            spyOn(state, "go");
+            spyOn(log, "error");
+
+            var data = {
+                "$scope": rootScope.$new(),
+                "$state": state
+            };
+            data.$scope.email = "mail@domain.com";
+
+            controller(data);
+            data.$scope.reset_pwd();
+
+            httpBackend.flush();
+            httpBackend.verifyNoOutstandingRequest();
+            httpBackend.verifyNoOutstandingExpectation();
+
+            expect(log.error).toHaveBeenCalled();
+            expect(state.go).not.toHaveBeenCalledWith();
+        });
+    });
+
+    describe("Test reset pwd confirm controller", function () {
+        var controller, rootScope, SERVER_URL, httpBackend, state, log;
+
+        beforeEach(function () {
+            module("ui.router");
+            module("huqasAppConfig");
+            module("huqas.auth.services");
+            module("huqas.auth.controllers");
+
+            inject(["$rootScope", "$controller", "$httpBackend", "SERVER_URL",
+                "$state", "$log",
+                function ($rootScope, $controller, $httpBackend, url, $state, $log) {
+                    rootScope = $rootScope;
+                    SERVER_URL = url;
+                    state = $state;
+                    httpBackend = $httpBackend;
+                    log = $log;
+
+                    controller = function (data) {
+                        return $controller("huqas.auth.controllers.reset_pwd_confirm", data);
+                    };
+                }
+            ]);
+        });
+
+        it("should reset a password", function () {
+            httpBackend.expectPOST(SERVER_URL + "api/rest-auth/password/reset/confirm/", {
+                "uid": "123",
+                "token": "456",
+                "new_password1": "pass",
+                "new_password2": "pass"
+            }).respond(200);
+
+            spyOn(log, "error");
+            spyOn(state, "go");
+            var data = {
+                "$scope": rootScope.$new(),
+                "$state": state,
+                "$log": log,
+                "$stateParams": {
+                    "uid": "123",
+                    "token": "456"
+                }
+            };
+            data.$scope.new_password1 = "pass";
+            data.$scope.new_password2 = "pass";
+
+            controller(data);
+            data.$scope.reset_pwd_confirm();
+
+            httpBackend.flush();
+            httpBackend.verifyNoOutstandingRequest();
+            httpBackend.verifyNoOutstandingExpectation();
+
+            expect(state.go).toHaveBeenCalledWith("login", {"reset_pwd_confirm": "true"});
+            expect(log.error).not.toHaveBeenCalled();
+        });
+
+        it("should show an error on fail to reset a password (uid fail)", function () {
+            httpBackend.expectPOST(SERVER_URL + "api/rest-auth/password/reset/confirm/", {
+                "uid": "123",
+                "token": "456",
+                "new_password1": "pass",
+                "new_password2": "pass"
+            }).respond(500, {"uid": "haha"});
+
+            spyOn(log, "error");
+            spyOn(state, "go");
+            var data = {
+                "$scope": rootScope.$new(),
+                "$state": state,
+                "$log": log,
+                "$stateParams": {
+                    "uid": "123",
+                    "token": "456"
+                }
+            };
+            data.$scope.new_password1 = "pass";
+            data.$scope.new_password2 = "pass";
+
+            controller(data);
+            data.$scope.reset_pwd_confirm();
+
+            httpBackend.flush();
+            httpBackend.verifyNoOutstandingRequest();
+            httpBackend.verifyNoOutstandingExpectation();
+
+            expect(state.go).not.toHaveBeenCalled();
+            expect(log.error).toHaveBeenCalled();
+            expect(data.$scope.errors).toEqual({"": ["Invalid password reset token."]});
+        });
+
+
+        it("should show an error on fail to reset a password (token fail)", function () {
+            httpBackend.expectPOST(SERVER_URL + "api/rest-auth/password/reset/confirm/", {
+                "uid": "123",
+                "token": "456",
+                "new_password1": "pass",
+                "new_password2": "pass"
+            }).respond(500, {"token": "haha"});
+
+            spyOn(log, "error");
+            spyOn(state, "go");
+            var data = {
+                "$scope": rootScope.$new(),
+                "$state": state,
+                "$log": log,
+                "$stateParams": {
+                    "uid": "123",
+                    "token": "456"
+                }
+            };
+            data.$scope.new_password1 = "pass";
+            data.$scope.new_password2 = "pass";
+
+            controller(data);
+            data.$scope.reset_pwd_confirm();
+
+            httpBackend.flush();
+            httpBackend.verifyNoOutstandingRequest();
+            httpBackend.verifyNoOutstandingExpectation();
+
+            expect(state.go).not.toHaveBeenCalled();
+            expect(log.error).toHaveBeenCalled();
+            expect(data.$scope.errors).toEqual({"": ["Invalid password reset token."]});
+        });
+
+        it("should show an error on fail to validate", function () {
+            spyOn(log, "error");
+            spyOn(state, "go");
+            var data = {
+                "$scope": rootScope.$new(),
+                "$state": state,
+                "$log": log,
+                "$stateParams": {
+                    "uid": "123",
+                    "token": "456"
+                }
+            };
+            data.$scope.new_password1 = "pass";
+            data.$scope.new_password2 = "hus";
+
+            controller(data);
+            data.$scope.reset_pwd_confirm();
+
+            httpBackend.verifyNoOutstandingRequest();
+            httpBackend.verifyNoOutstandingExpectation();
+
+            expect(state.go).not.toHaveBeenCalled();
+            expect(log.error).toHaveBeenCalled();
+            expect(data.$scope.errors).toEqual({
+                "new_password1": ["The two passwords do not match"],
+                "new_password2": ["The two passwords do not match"]
+            });
+        });
+    });
+
+})();

@@ -1,0 +1,38 @@
+<div class="content-header">
+   <h2 class="content-title">
+        <span class="main-title"><i class="fa fa-{{edit_lab ? 'pencil' : 'plus-circle'}}"></i> {{edit_lab? 'Edit' : 'Add'}} Lab</span>
+   </h2>
+</div>
+<div class="content-control">
+    <!--breadcrumb-->
+    <div ncy-breadcrumb></div>
+    <!--/breadcrumb-->
+</div>
+
+<div class="content-body">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1 content-card margin-t-20 margin-b-20">
+        <wizard edit-mode="edit_lab" template="labs/tpls/labs/labs-wizard-create.tpl.html">
+            <wz-step title="Lab Details">
+                <include-tpl src="labs/tpls/labs/lab-details.tpl.html"></include-tpl>
+            </wz-step>
+            <span ng-controller="huqas.labs.controllers.lab_programs">
+                <wz-step title="Lab Programs" canexit="multi.exitValidation">
+                    <include-tpl src="labs/tpls/labs/lab-programs.tpl.html">
+                    </include-tpl>
+                </wz-step>
+            </span>
+            <span ng-controller="huqas.labs.controllers.lab_users">
+                <wz-step title="Lab Users" canexit="multi.exitValidation">
+                    <include-tpl src="labs/tpls/labs/lab-users.tpl.html">
+                    </include-tpl>
+                </wz-step>
+            </span>
+            <span ng-controller="huqas.labs.controllers.lab_contacts">
+                <wz-step title="Lab Contacts" canexit="multi.exitValidation">
+                    <include-tpl src="labs/tpls/labs/lab-contacts.tpl.html">
+                    </include-tpl>
+                </wz-step>
+            </span>
+        </wizard>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 col-md-offset-3 col-lg-6 col-lg-offset-3">
+            <div class="margin-t-120 card-container col-xs-12">
+                <div class="row title-line">
+                    <h2 class="text-center">
+                        <a ui-sref="dashboard" tooltip="Click to go to homepage"><img src="assets/images/Konza_Techno_City_Logo.png" width="120px" height="100px"></a>
+                    </h2>
+                </div>
+                <div class="col-xs-12 col-md-10 col-md-offset-1 alert alert-info" ng-if="params.reset_pwd||params.reset_pwd_confirm||params.timeout||params.change_pwd||logout">
+                    <button class="close" data-dismiss="alert" ><span>&times;</span></button>
+                    <p ng-if="params.reset_pwd">Password reset instructions have been sent to your email.</p>
+                    <p ng-if="params.reset_pwd_confirm">Password has been reset successfully.</p>
+                    <p ng-if="params.change_pwd">Password has been changed successfully.</p>
+                    <p ng-if="params.timeout">Your session has expired. Please login again.</p>
+                    <p ng-if="logout">Logging out your session.</p>
+                </div>
+                <span ng-if="login_err_html" ng-bind-html="login_err_html" class="col-xs-12 fade-content alert alert-danger col-md-10 col-md-offset-1">
+                    <span class="pull-right">
+                        <i class="fa fa-times"></i>
+                    </span>
+                </span>
+                <form role="form" class="pad-b-20" name="frm_login" ng-submit="submitUser(user)" novalidate>
+                    <div class="col-xs-12 col-sm-10 col-sm-offset-1 margin-b-20">
+                        <div class="form-group input-group margin-b-20">
+                            <span class="white-addon input-group-addon" id="basic-addon1">
+                              <i class="fa fa-envelope fs-16"></i>
+                            </span>
+                            <input type="text" ng-model="user.username" required autofocus name="email" placeholder="Enter your email" id="email" class="white-input form-control" ng-disabled="logout">
+                        </div>
+
+                        <div class="form-group input-group">
+                            <span class="white-addon input-group-addon" id="basic-addon1">
+                              <i class="fa fa-lock fs-18"></i>
+                            </span>
+                            <input type="password" ng-model="user.password" required name="password" id="password" class="white-input form-control" placeholder="Enter your password" ng-disabled="logout">
+                        </div>
+
+                        <div class="form-group">
+                            <div class="pull-right">
+                                <span ng-if="spinner" style="display: inline-block;" class="margin-r-10 margin-t-5">
+                                    <i class="fa fa-spin fa-circle-o-notch"></i>
+                                </span>
+                                <button id="login_btn" type="submit" class="btn btn-primary" ng-disabled="spinner||login.$invalid||logout">Login</button>
+
+                            </div>
+                            <div class="pull-left margin-t-5">
+                                <a ui-sref="reset_pwd">Forgot password</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+</div>

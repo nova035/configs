@@ -1,0 +1,41 @@
+<div class="col-xs-12">
+    <div class="col-xs-12 margin-t-15 content-card pad-0">
+         <table class="table table-condensed table-hover" style="font-family : 'Lato Light', sans-serif;">
+            <thead style="background-color: #7D2678; color: #eeeeee;">
+                <th class="col-md-3 fs-15">Analyte</th>
+                <th class="col-md-1 fs-15">Unit</th>
+                <th class="col-md-4 fs-15">Response</th>
+                <th class="col-md-4 fs-15">Result Code</th>
+            </thead>
+            <tbody>
+                <tr class="bg-white fx-fade-down fx-dur-600 fx-ease-cubic fx-stagger-50" ng-repeat="result in results">
+                    <td class="col-md-3 fs-14 pad-t-15 fw-600">
+                        {{result.analyte_name}}
+                    </td>
+                    <td class="col-md-1 pad-t-15">
+                        <span class="label label-warning fs-11">
+                            {{result.unit_name}}
+                        </span>
+                    </td>
+                    <td class="col-md-4">
+                        <input class="form-control fw-600" placeholder="Enter Response" ng-model="result.response"/>
+                    </td>
+                    <td class="col-md-4">
+                        <select class="form-control fw-600" name="result_code" ng-model="result.result_code">
+                            <option value="" disabled>Select Result Code</option>
+                            <option ng-repeat="code in result_codes" ng-selected="{{code.id == result.result_code}}" value="{{code.id}}">{{code.name}}</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-xs-12 pad-0">
+        <button class="btn btn-primary">
+            Save
+        </button>
+        <a ui-sref="results.programs" class="btn btn-default">
+            Cancel
+        </a>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="content-header">
+   <h2 class="content-title">
+        <span class="main-title"><i class="fa fa-clipboard"></i> Results</span>
+   </h2>
+</div>
+<div class="col-xs-12 margin-t-20">
+    <div class="col-xs-12 margin-t-30" ng-if="spinner">
+        <div class="map-change-state">
+            <div class="loader"></div>
+            <div class="row">
+                <h3 class="text-center loader-text">Please wait...</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 margin-t-20" ng-if="!spinner">
+    <div class="col-md-4 col-xs-12 pad-r-0 content-card">
+        <div class="col-xs-12 pad-l-2 category-title">
+            <div class="col-xs-12 pad-0 fade-content">
+                <h4 class="lato-light fw-500 margin-b-10">
+                    <span class="fa-stack fa-lg fs-22 text-dark-green pad-l-3 col-md-4">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                    </span>
+                    &nbsp;
+                    <span class="margin-t-5 col-md-8">
+                        <p class="fs-14 margin-b-0">
+                            Signed in as
+                        </p>
+                        <p class="fs-13 text-dark-grey">
+                            {{loggedInUser.email}}
+                        </p>
+                    </span>
+                </h4>
+            </div>
+            <div class="form-group input-group pad-t-5">
+                <span class="white-addon input-group-addon" id="basic-addon1">
+                  <i class="fa fa-search"></i>
+                </span>
+                <input class="white-input form-control" ng-model="chat.query" placeholder="Search Contacts...">
+            </div>
+        </div>
+        <div class="program-list col-xs-12 pad-0 margin-b-10">
+            <div class="col-xs-12 pad-0 fx-fade-down fx-dur-600 fx-ease-cubic fx-stagger-50" ng-repeat="chat in chat_list | filter : chat.query">
+                <div class="program-item col-xs-12 pad-l-6 pad-r-0 pad-b-5 pad-t-5"  ng-class="{'active' : chat.active}" ng-click="activeChat(chat.id)">
+
+                    <div class="col-md-2 col-sm-4 col-xs-2 pad-t-3 pad-l-0">
+                        <span class="fa-stack fa-lg fs-24 text-dark-green">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="col-md-10 col-sm-8 col-xs-10 margin-t-3 pad-t-3 margin-b-0 fs-15 pad-l-0">
+                        <span class="pad-l-0 col-xs-12">
+                            <p class="fs-16 text-black lato-light margin-b-0 fw-600">
+                                {{chat.name}}
+                            </p>
+                            <p class="fs-14 text-dark-grey">
+                                {{ chat.messages[0].other | limitTo: 40 }}{{chat.messages[0].other.length > 40 ? '...' : ''}}
+                            </p>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fade-content col-md-8 col-xs-12 pad-0">
+        <div class="fx-fade-up fx-speed-500fx-fade-up fx-speed-500 col-xs-12 pad-0 content-card" style="border-left: 1px solid #e0e0e0;" ui-view="side-view"></div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,32 @@
+<div class="col-xs-12 content-card">
+    <h4 class="lato-light margin-b-10 fs-20">
+        Test Events List
+    </h4>
+    <table class="table table-hover table-condensed fs-14" id="no-more-tables">
+        <thead>
+            <tr>
+                <th class="col-md-2">Name</th>
+                <th class="col-md-2">Sample Dispatch Date</th>
+                <th class="col-md-2">Start Date</th>
+                <th class="col-md-2">End Date</th>
+                <th class="col-md-2">Expected Report Date</th>
+                <th class="col-md-2"></th>
+            </tr>
+        </thead>
+        <tbody class="fade-content">
+            <tr  ng-repeat="event in events">
+                <td class="col-md-2 pad-t-15" data-title="Name:" class="pad-t-15">{{event.name}}</td>
+                <td class="col-md-2 pad-t-15" data-title="Sample Dispatch Date:" class="pad-t-15">{{event.sample_dispatch_date | date : 'dd-MM-yyyy'}}</td>
+                <td class="col-md-2 pad-t-15" data-title="Start Date:" class="pad-t-15">{{event.start_date | date : 'dd-MM-yyyy'}}</td>
+                <td class="col-md-2 pad-t-15" data-title="End Date:" class="pad-t-15">{{event.end_date | date : 'dd-MM-yyyy'}}</td>
+                <td class="col-md-2 pad-t-15" data-title="Expected Report Date:" class="pad-t-15">{{event.expected_report_date | date : 'dd-MM-yyyy'}}</td>
+                <td data-title="Actions:" class="col-md-2 text-right">
+                    <a class="action-btn action-btn-grid action-btn-success" ui-sref="dashboard.events.edit_event({event_id: event.id})" class="btn btn-success">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <sil-grid-pagination> </sil-grid-pagination>
+</div>

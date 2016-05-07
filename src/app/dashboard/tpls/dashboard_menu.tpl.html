@@ -1,0 +1,380 @@
+<div class="content-header">
+   <h2 class="content-title">
+        <span class="main-title">
+            <i class="fa fa-dashboard"></i> Dashboard
+            <span class="pull-right" title="Hide/show advanced search" sidebar-toogle="#search_frm_div">
+                <i class="fa fa-chevron-circle-left text-primary menu-toggle-btn"></i>
+            </span>
+        </span>
+   </h2>
+</div>
+<div class="content-control">
+    <!--breadcrumb-->
+    <div ncy-breadcrumb></div>
+    <!--/breadcrumb-->
+</div>
+<div class="col-xs-12 margin-t-30">
+
+    <!-- Test event menu -->
+    <div class="col-md-6 col-xs-12" id="search_frm_div">
+        <div class="col-xs-12 content-card pad-0" style="border-bottom: 1px solid #e0e0e0;border-left: 1px solid #e0e0e0;">
+            <div class="bg-white col-xs-12 pad-l-5 pad-t-15 pad-b-15">
+                <h1 class="fs-22 text-purple margin-t-10 lato-light">
+                    Test Event Setup
+                </h1>
+            </div>
+            <div class="col-xs-12 list-group pad-0 margin-b-0" style="font-family : 'Lato Light', sans-serif;">
+              <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="dashboard.events">
+                <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-calendar fa-stack-1x fa-inverse"></i>
+                </span>
+                &nbsp;
+                <span class="fs-18 text-blue margin-b-0 col-md-8">
+                    Test Events
+                </span>
+                <br>
+                <span class="fs-14 text-black margin-l-20">
+                    View, add & edit test events
+                </span>
+              </a>
+              <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="events">
+                <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-link fa-stack-1x fa-inverse"></i>
+                </span>
+                &nbsp;<span class="fs-18 text-blue col-md-8">
+                    Events Program Sample History
+                </span>
+                <br>
+                <span class="margin-l-20 fs-14 text-black">
+                    Manage Event Program Sample History
+                </span>
+              </a>
+              <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="programs">
+                <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-external-link fa-stack-1x fa-inverse"></i>
+                </span>
+                &nbsp;<span class="fs-18 text-blue col-md-8">
+                    Link Events to Analytes
+                </span>
+                <br>
+                <span class="margin-l-20 fs-14 text-black">
+                    Setup analytes for different events
+                </span>
+              </a>
+            </div>
+        </div>
+    </div>
+    <!-- End of Test event menu -->
+
+    <!-- Analysis setup menu -->
+    <div class="col-md-6 col-xs-12">
+        <div class="col-xs-12 content-card pad-0" style="border-bottom: 1px solid #e0e0e0;border-left: 1px solid #e0e0e0;">
+            <div class="bg-white col-xs-12 pad-l-5 pad-t-15 pad-b-15">
+                <h1 class="fs-22 margin-t-10 text-purple lato-light">
+                    Analysis Setup
+                </h1>
+            </div>
+            <div class="col-xs-12 list-group pad-0 margin-b-0" style="font-family : 'Lato Light', sans-serif;">
+              <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="dashboard.result_codes">
+                <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-barcode fa-stack-1x fa-inverse"></i>
+                </span>
+                &nbsp;
+                <span class="fs-18 text-blue margin-b-0 col-md-8">
+                    Result Code
+                </span>
+                <br>
+                <span class="fs-14 text-black margin-l-20">
+                    Manage Result Codes
+                </span>
+              </a>
+              <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="dashboard.evaluation_criteria">
+                <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-th-list fa-stack-1x fa-inverse"></i>
+                </span>
+                &nbsp;<span class="fs-18 text-blue col-md-8">
+                    Evaluation Criteria
+                </span>
+                <br>
+                <span class="margin-l-20 fs-14 text-black">
+                    Manage Evaluation Criteria
+                </span>
+              </a>
+              <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="programs">
+                <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-certificate fa-stack-1x fa-inverse"></i>
+                </span>
+                &nbsp;<span class="fs-18 text-blue col-md-8">
+                    Certificate of Analysis
+                </span>
+                <br>
+                <span class="margin-l-20 fs-14 text-black">
+                    Manage Certificate of Analysis
+                </span>
+              </a>
+            </div>
+        </div>
+    </div>
+    <!-- End of test event setup menu -->
+    <div class="clearfix visible-md visible-lg hidden-sm hidden-xs margin-t-20 margin-b-20"></div>
+    <!-- program setup menu -->
+    <div class="col-md-6 col-xs-12 pad-0">
+        <div class="col-xs-12">
+            <div class="col-xs-12 content-card pad-0" style="border-bottom: 1px solid #e0e0e0;border-left: 1px solid #e0e0e0;">
+                <div class="bg-white col-xs-12 pad-l-5 pad-t-15 pad-b-15">
+                    <h1 class="fs-22 margin-t-10 text-purple lato-light">
+                        Program Setup
+                    </h1>
+                </div>
+                <div class="col-xs-12 list-group pad-0 margin-b-0" style="font-family : 'Lato Light', sans-serif;">
+                  <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="dashboard.categories">
+                    <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-book fa-stack-1x fa-inverse"></i>
+                    </span>
+                    &nbsp;
+                    <span class="fs-18 text-blue margin-b-0 col-md-8">
+                        Categories
+                    </span>
+                    <br>
+                    <span class="fs-14 text-black margin-l-20">
+                        Manage Categories
+                    </span>
+                  </a>
+                  <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="dashboard.programs">
+                    <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-sitemap fa-stack-1x fa-inverse"></i>
+                    </span>
+                    &nbsp;<span class="fs-18 text-blue col-md-8">
+                        Programs
+                    </span>
+                    <br>
+                    <span class="margin-l-20 fs-14 text-black">
+                        Manage Programs
+                    </span>
+                  </a>
+                  <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="programs">
+                    <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-list-alt fa-stack-1x fa-inverse"></i>
+                    </span>
+                    &nbsp;<span class="fs-18 text-blue col-md-8">
+                        Program Samples
+                    </span>
+                    <br>
+                    <span class="margin-l-20 fs-14 text-black">
+                        Manage Program Samples
+                    </span>
+                  </a>
+                  <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="dashboard.analytes">
+                    <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-flask fa-stack-1x fa-inverse"></i>
+                    </span>
+                    &nbsp;<span class="fs-18 text-blue col-md-8">
+                        Analyte
+                    </span>
+                    <br>
+                    <span class="margin-l-20 fs-14 text-black">
+                        Manage Analyte
+                    </span>
+                  </a>
+                </div>
+            </div>
+        </div>
+         <!-- Analysis setup menu -->
+        <div class="col-xs-12">
+            <div class="col-xs-12 content-card pad-0" style="border-bottom: 1px solid #e0e0e0;border-left: 1px solid #e0e0e0;">
+                <div class="bg-white col-xs-12 pad-l-5 pad-t-15 pad-b-15">
+                    <h1 class="fs-22 margin-t-10 text-purple lato-light">
+                        Lab Setup
+                    </h1>
+                </div>
+                <div class="col-xs-12 list-group pad-0 margin-b-0" style="font-family : 'Lato Light', sans-serif;">
+                  <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="result_codes">
+                    <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-ticket fa-stack-1x fa-inverse"></i>
+                    </span>
+                    &nbsp;
+                    <span class="fs-18 text-blue margin-b-0 col-md-8">
+                        Subscriptions
+                    </span>
+                    <br>
+                    <span class="fs-14 text-black margin-l-20">
+                        View Lab Subscriptions
+                    </span>
+                  </a>
+                  <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="evaluation_criteria">
+                    <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-briefcase fa-stack-1x fa-inverse"></i>
+                    </span>
+                    &nbsp;<span class="fs-18 text-blue col-md-8">
+                        Enrollments
+                    </span>
+                    <br>
+                    <span class="margin-l-20 fs-14 text-black">
+                        View Lab Enrollments
+                    </span>
+                  </a>
+                  <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="programs">
+                    <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-clipboard fa-stack-1x fa-inverse"></i>
+                    </span>
+                    &nbsp;<span class="fs-18 text-blue col-md-8">
+                        Results
+                    </span>
+                    <br>
+                    <span class="margin-l-20 fs-14 text-black">
+                        View Lab Results
+                    </span>
+                  </a>
+                  <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="programs">
+                    <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-user-md fa-stack-1x fa-inverse"></i>
+                    </span>
+                    &nbsp;<span class="fs-18 text-blue col-md-8">
+                        Log in as Lab User
+                    </span>
+                    <br>
+                    <span class="margin-l-20 fs-14 text-black">
+                        Log in as Lab User to act on Lab Enrollments
+                    </span>
+                  </a>
+                </div>
+            </div>
+        </div>
+        <!-- End of Test event menu -->
+    </div>
+    <!--  -->
+    <!-- End of program setup menu -->
+    <!-- Master data menu -->
+    <div class="col-md-6 col-xs-12">
+        <div class="col-xs-12 content-card pad-0" style="border-bottom: 1px solid #e0e0e0;border-left: 1px solid #e0e0e0;">
+            <div class="bg-white col-xs-12 pad-l-5 pad-t-15 pad-b-15">
+                <h1 class="fs-22 margin-t-10 text-purple lato-light">
+                    Master Data Setup
+                </h1>
+            </div>
+            <div class="col-xs-12 list-group pad-0 margin-b-0" style="font-family : 'Lato Light', sans-serif;">
+              <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="dashboard.manufacturers">
+                <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-building fa-stack-1x fa-inverse"></i>
+                </span>
+                &nbsp;
+                <span class="fs-18 text-blue margin-b-0 col-md-8">
+                    Manufacturer
+                </span>
+                <br>
+                <span class="fs-14 text-black margin-l-20">
+                    Manage Manufacturer
+                </span>
+              </a>
+              <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="dashboard.methods">
+                <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-server fa-stack-1x fa-inverse"></i>
+                </span>
+                &nbsp;<span class="fs-18 text-blue col-md-8">
+                    Methods
+                </span>
+                <br>
+                <span class="margin-l-20 fs-14 text-black">
+                    Manage Methods
+                </span>
+              </a>
+              <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="dashboard.instruments">
+                <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-sliders fa-stack-1x fa-inverse"></i>
+                </span>
+                &nbsp;<span class="fs-18 text-blue col-md-8">
+                    Instruments & Instrument Models
+                </span>
+                <br>
+                <span class="margin-l-20 fs-14 text-black">
+                    Manage Instruments & Instrument Models
+                </span>
+              </a>
+              <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="dashboard.units">
+                <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-superscript fa-stack-1x fa-inverse"></i>
+                </span>
+                &nbsp;<span class="fs-18 text-blue col-md-8">
+                    Units & Unit Conversions
+                </span>
+                <br>
+                <span class="margin-l-20 fs-14 text-black">
+                    Manage Units & Unit Conversions
+                </span>
+              </a>
+              <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="dashboard.samples">
+                <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-eyedropper fa-stack-1x fa-inverse"></i>
+                </span>
+                &nbsp;<span class="fs-18 text-blue col-md-8">
+                    Samples
+                </span>
+                <br>
+                <span class="margin-l-20 fs-14 text-black">
+                    Manage Samples
+                </span>
+              </a>
+              <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="dashboard.sample_types">
+                <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-pie-chart fa-stack-1x fa-inverse"></i>
+                </span>
+                &nbsp;<span class="fs-18 text-blue col-md-8">
+                    Sample Types
+                </span>
+                <br>
+                <span class="margin-l-20 fs-14 text-black">
+                    Manage Sample Types
+                </span>
+              </a>
+              <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="dashboard.reagents">
+                <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-database fa-stack-1x fa-inverse"></i>
+                </span>
+                &nbsp;<span class="fs-18 text-blue col-md-8">
+                    Reagents
+                </span>
+                <br>
+                <span class="margin-l-20 fs-14 text-black">
+                    Manage Reagents
+                </span>
+              </a>
+              <a class="list-group-item fs-18 pad-t-5 pad-b-5" ui-sref="dashboard.drugs">
+                <span class="fa-stack fa-lg fs-22 text-blue pad-l-3 col-md-4">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-medkit fa-stack-1x fa-inverse"></i>
+                </span>
+                &nbsp;<span class="fs-18 text-blue col-md-8">
+                    Drugs
+                </span>
+                <br>
+                <span class="margin-l-20 fs-14 text-black">
+                    Manage Drugs
+                </span>
+              </a>
+            </div>
+        </div>
+    </div>
+    <!-- End of Master data menu -->
+    <div class="clearfix visible-md visible-lg hidden-sm hidden-xs margin-t-20 margin-b-20"></div>
+</div>

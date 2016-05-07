@@ -1,0 +1,32 @@
+<div class="col-xs-12 margin-t-20">
+    <div class="col-xs-12 content-card" style="padding: 0px;">
+        <table class="table table-condensed table-hover">
+            <thead class="grey-header">
+                <th class="col-xs-5">Sample</th>
+                <th class="col-xs-5">Comment</th>
+                <th class="col-xs-2">Status</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="sample in a_program.samples">
+                    <td class="col-xs-5">
+                        <input class="form-control" readonly ng-model="sample.sample_name">
+                    </td>
+                    <td class="col-xs-5">
+                        <textarea class="form-control" rows="1" placeholder="Comment on Sample Condition" ng-model="sample.comment"></textarea>
+                    </td>
+                    <td class="col-xs-2">
+                        <label>
+                            <input type="checkbox" id="is_ok" name="is_ok" ng-model="sample.is_ok">
+                            Is Ok
+                        </label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-xs-12 margin-t-5 pad-l-0">
+        <button class="btn btn-md btn-primary" ng-click="sampleConditions()">
+            Save Comments
+        </button>
+    </div>
+</div>

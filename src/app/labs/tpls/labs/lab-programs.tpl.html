@@ -1,0 +1,146 @@
+<div class="col-sm-10 fade-content col-sm-offset-1 col-xs-12">
+
+    <!-- lab program form-->
+    <div class="margin-t-20 col-xs-12" ng-show="multi.show_form" ng-class="{'':multi.show_form,'fx-zoom-normal fx-speed-400':!multi.show_form}">
+        <div class="custom-well col-xs-12">
+            <div class="col-xs-12 pad-0">
+                <h4 class="fw-600 fs-18 col-xs-6 pad-0">{{multi.edit?'Edit':'Add'}} Program</h4>
+                <div class="col-xs-6">
+                    <button ng-show="multi.show_form" class="z100 pull-right btn btn-primary margin-t-10" ng-click="newProg(labprog_frm,multi)">
+                        Hide form
+                    </button>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <form name="labprog_frm" ng-submit="saveLabProg(labprog_frm,multi.edit)" novalidate>
+                    <div class="col-xs-12 pad-0 margin-t-5">
+                        <drf-err-msg></drf-err-msg>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <label class="fs-14 control-label">Program<span class="text-danger">&#42;</span></label>
+                        <ui-select ng-model="multi.select_values.program" required name="program" api-checker register-custom-form-control>
+                            <ui-select-match placeholder="Select a program..." allow-clear="true">
+                                <span>{{$select.selected.name}}</span>
+                            </ui-select-match>
+                            <ui-select-choices repeat="prog.id as prog in programs | filter:$select.search">
+                                <span>{{prog.name}}</span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <input type="number" name="id" ng-model="lab_program.id" hidden>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <input type="number" name="lab" ng-model="lab.id" hidden>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <label for="notes" class="control-label fs-14">
+                            Notes <span class="text-danger">&#42;</span>: {{lab_program.valid_to | date}}
+                        </label>
+                        <textarea class="form-control margin-b-10" name="notes" ng-model="lab_program.notes" placeholder="Type in notes" required api-checker>
+                        </textarea>
+                    </div>
+                   <div class="form-group col-xs-12">
+                        <label for="valid from" class="control-label fs-14">
+                            Valid From <span class="text-danger">&#42;</span>: {{lab_program.valid_from | date}}
+                        </label>
+                        <datepicker date-format="y-MM-dd">
+                            <input class="form-control  margin-b-10" name="valid_from" ng-model="lab_program.valid_from" type="text"  placeholder="yy-MM-dd" required api-checker/>
+                        </datepicker>
+                    </div>
+                   <div class="form-group col-xs-12">
+                        <label for="valid to" class="control-label fs-14">
+                            Valid To <span class="text-danger">&#42;</span>: {{lab_program.valid_to | date}}
+                        </label>
+                        <datepicker date-format="y-MM-dd" date-min-limit="{{lab_program.valid_from}}">
+                            <input class="form-control  margin-b-10" name="valid_to" ng-model="lab_program.valid_to" type="text"  placeholder="yy-MM-dd" ng-disabled="!lab_program.valid_from" required api-checker/>
+                        </datepicker>
+                    </div>
+                    <div class="form-group col-xs-12 checkbox margin-t-50">
+                        <label>
+                            <input type="checkbox" id="is_fully_paid" name="is_fully_paid" ng-model="lab_program.is_fully_paid" tooltip="Check if Test Event is not retired" api-checker >
+                            Is fully paid
+                        </label>
+                    </div>
+                    <div class="form-group col-xs-12 checkbox margin-t-50">
+                        <label>
+                            <input type="checkbox" id="is_report_only" name="is_report_only" ng-model="lab_program.is_report_only" tooltip="Check if Test Event is not retired" api-checker >
+                            Is report only
+                        </label>
+                    </div>
+                    <div class="form-group col-xs-12 checkbox margin-t-20">
+                        <label>
+                            <input type="checkbox" id="active" name="active" ng-model="lab_program.active" tooltip="Check if Test Event is not retired" api-checker >
+                            Active
+                        </label>
+                    </div>
+                    <button class="btn btn-primary btn-sm" type="submit" >Save Lab Program</button>
+                    <button class="btn btn-default btn-sm" ng-click="newProg(labprog_frm,multi)">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!--lab programs -->
+    <div id="no-more-tables" class="col-xs-12 margin-t-15 fade-content" ng-if="lab_programs.length>0">
+        <div class="custom-well">
+            <div class="col-xs-12 pad-0">
+                <h4 class="fw-600 fs-18 col-xs-6 pad-0">Lab Programs</h4>
+                <button ng-show="!multi.show_form" class="pull-right margin-t-10 action-btn action-btn-grid action-btn-primary" ng-click="newProg(labprog_frm,multi)" tooltip="Add Lab Program" tooltip-placement="left">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+            <table class="table table-hover table-condensed fs-14">
+                <thead>
+                    <th>Name</th>
+                    <th>Valid From</th>
+                    <th>Valid To</th>
+                    <th>Is Report Only</th>
+                    <th>Fully Paid</th>
+                    <th>Active</th>
+                    <th></th>
+                </thead>
+                <tbody class="example-animate-container">
+                    <tr ng-repeat="prog in lab_programs | filter: search.query">
+                        <td data-title="Name" class="pad-t-15">
+                            {{prog.program_name | titlecase}}
+                        </td>
+                        <td data-title="Valid From" class="pad-t-15">
+                            {{prog.valid_from | date }}
+                        </td>
+                        <td data-title="Valid From" class="pad-t-15">
+                            {{prog.valid_to | date }}
+                        </td>
+                        <td data-title="Is Report Only" class="pad-t-15">
+                            {{prog.is_report_only | boolFilter }}
+                        </td>
+                        <td data-title="Fully Paid" class="pad-t-15">
+                            {{prog.is_fully_paid | boolFilter }}
+                        </td>
+                        <td data-title="Fully Paid" class="pad-t-15">
+                            {{prog.active | boolFilter }}
+                        </td>
+                        <td class="text-right">
+                            <a ng-click="editProg(labprog_frm,prog,multi)" class="action-btn action-btn-grid action-btn-success" tooltip="Edit">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-xs-12" ng-if="lab_programs.length===0">
+        <div class="alert alert-info" role="alert">
+           <span class="fs-18"><i class="fa fa-info-circle"></i> Please add a program to the lab to proceed.</span>
+        </div>
+    </div>
+    <!--end of lab programs-->
+
+
+    <div class="col-xs-12 margin-v-20">
+        <button class="btn btn-default" wz-previous >Lab Details</button>
+        <button class="btn btn-primary pull-right" wz-next="multi.exitValidation">Lab Users</button>
+    </div>
+</div>

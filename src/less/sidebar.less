@@ -1,0 +1,345 @@
+/*Styling for sidebar links - sidebar.less*/
+.sidenav-container {
+    margin-top: -10px;
+    background-color: #424242;
+}
+.nav .nav-sidebar > li:before, .nav .nav-sidebar > li:after {
+    display: block;
+    background-color: #000 !important;
+    border: transparent;
+}
+.side-left {
+    position: relative;
+    padding-top: 3px;
+    display: block;
+    width: 100%;
+    background: #424242;
+}
+.side-left ul > li:after {
+    display: block;
+    border-bottom: 1px solid #C0C0C0 !important;
+    border-top: 1px solid #C0C0C0 !important;
+    background-color: rgba(128, 128, 128, 0.6) !important;
+    border-left: 3px solid #e53935 !important;
+    width: 90% !important;
+}
+.side-left ul > li .active:before, .side-left ul > li .active:after {
+    display: block;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: rgba(192, 192, 192, 0.6) !important;
+    border-left: 3px solid #e53935 !important;
+    border-bottom: 1px solid #C0C0C0 !important;
+    border-top: 1px solid #C0C0C0 !important;
+    width: 90% !important;
+}
+.side-left  a {
+    color: #f4f4f4 !important;
+    background-color: #616161;
+    box-shadow: 0 0 1px #CCC;
+    font-size: 14px;
+}
+.side-left  a:hover{
+    color: #FFF !important;
+    background-color: #757575 !important;
+    border-left: 3px solid #e53935;
+    -webkit-transition: all .1s ease;
+    -ms-transition: all .1s ease;
+    transition: all .1s ease
+}
+.side-left .active a {
+    color: #FFFFFF !important;
+    background-color: #757575 !important;
+    border-left: 3px solid #e53935;
+    border-bottom: 1px solid #C0C0C0 !important;
+    border-top: 1px solid #C0C0C0 !important;
+}
+.my-sidebar {
+    /*background-color: #9e9e9e ;*/
+    background-color: lighten(#2196F3, 5%);
+    border-right:1px solid #F0F0F0;
+    /*min-height: 100vh;*/
+}
+.my-sidebar > ul {
+    display: block;
+}
+.my-sidebar > ul > li {
+    display: block;
+}
+/*=====Test sidebar styling*/
+.nav > li {
+    display: block;
+}
+
+.nav .nav-sidebar > .active > a {
+    border-left: 2px solid #fff;
+    border-bottom: 1px solid #C0C0C0 !important;
+    border-top: 1px solid #C0C0C0 !important;
+}
+
+.nav > li:before, .nav > li:after{
+    border-left: 2px solid red;
+    border-bottom: 1px solid #C0C0C0 !important;
+    border-top: 1px solid #C0C0C0 !important;
+}
+/*=====End of sidebar*/
+.my-sidebar > ul > li:hover, .my-sidebar > ul > li:active, .my-sidebar > ul > li:focus, .my-sidebar > ul > li .active > a {
+    border-left: 3px solid #e53935 !important;
+    color: lighten(#fff, 5%);
+    background-color: darken(#ddd, 5%) !important;
+    cursor: pointer;
+}
+.my-sidebar > ul > li > a{
+    border-bottom: #bdbdbd;
+    color: #FFF;
+    font-size: 14px;
+}
+
+.sidebar-label {
+    color: rgba(192, 192, 192, 0.6);
+    background-color: #212121;
+    border-top: 1px #2D2D2D solid;
+    margin-bottom: -5px;
+    width: 100%;
+    font-size:14px;
+    padding: 6px 0 8px 2px;
+}
+
+.new-sidebar {
+    height: 100vh;
+    border-right: 1px solid #000;
+}
+.sidebar {
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    padding: 0px 0 0 8px;
+    list-style: none;
+    border-bottom: 1px solid rgba(255, 255, 255, .1)
+}
+.sidebar>li {
+    position: relative;
+    margin: 0;
+    list-style: none;
+    display: block;
+    font-size: 10px;
+    text-align: left;
+}
+.sidebar>li.active:after, .sidebar>li.active:before {
+    right: -1px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none
+}
+.sidebar>li.active:after {
+    border-color: rgba(204, 204, 204, 0);
+    border-right-color: #F6F4F4;
+    border-width: 10px;
+    top: 50%;
+    margin-top: -10px
+}
+.sidebar>li:first-child.active:after {
+    border-right-color: #EDEDED
+}
+.sidebar>li.active:before {
+    border-color: rgba(204, 204, 204, 0);
+    border-right-color: #E0E4E8;
+    border-width: 11px;
+    top: 50%;
+    margin-top: -11px
+}
+.sidebar>li>a {
+    display: block;
+    margin: 0;
+    padding: 5px 5px 5px 8px;
+    height: 100%;
+    width: 100%;
+    background-color: #FFFFFF;
+    color: #bdc3c7;
+    cursor: pointer
+}
+.sidebar>li>a:hover {
+    color: #82CAFF
+}
+.sidebar>li.active>a:hover, .sidebar>li.active>a {
+    color: #fff;
+    cursor: default
+}
+.sidebar li a>.sidebar-icon {
+    display: block;
+    font-size: 24px;
+    line-height: 1.2em
+}
+.sidebar>li>a>.badge, .sidebar>li>a>.label {
+    position: absolute;
+    top: 5px;
+    left: 60%;
+    padding: 2px 5px;
+    font-size: 11px;
+    font-weight: 400;
+    -webkit-animation-delay: 3s;
+    animation-delay: 3s
+}
+.sidebar-child, .sidebar-child-inline {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    top: -2px;
+    left: 100%;
+    background-color: #fff;
+    color: #34495E;
+    border: 1px solid #E0E4E8;
+    border-left: 0;
+    display: none;
+    white-space: nowrap;
+    z-index: 99;
+    /*box-shadow: 0 2px 4px rgba(0, 0, 0, .05);*/
+    background-clip: padding-box
+}
+.sidebar-child {
+    padding: 5px 0
+}
+.sidebar>li:hover .sidebar-child, .sidebar>li:hover .sidebar-child-inline {
+    display: block
+}
+.sidebar-child li {
+    position: relative;
+    margin: 0;
+    padding: 0 5px;
+    display: block;
+    min-width: 160px;
+    list-style: none;
+    font-size: 1.2em;
+    text-align: left
+}
+.sidebar-child li.divider {
+    margin: 6px 15px;
+    height: 1px;
+    border-top: 1px solid #E0E4E8
+}
+.sidebar-child li a {
+    border-radius: 0;
+    display: block;
+    padding: 6px 10px;
+    border-radius: 4px
+}
+.sidebar-child li a:hover {
+    background-color: #82CAFF;
+    color: #ecf0f1
+}
+.sidebar-child li.active a, .sidebar-child li.active a:hover {
+    background-color: #394264;
+    color: #ecf0f1
+}
+.sidebar-child-inline li {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    list-style: none;
+    display: inline-block;
+    margin-right: -3px;
+    vertical-align: middle
+}
+.sidebar-child-inline li.divider {
+    height: 60px;
+    width: 1px;
+    cursor: default;
+    background-color: #E0E4E8;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none
+}
+.sidebar-child-inline li:first-child {
+    margin-left: -2px
+}
+.sidebar-child-inline li:last-child {
+    margin-right: 0
+}
+.sidebar-child-inline li a {
+    padding: 8px 20px;
+    display: block
+}
+.sidebar-child-inline li a:hover, .sidebar-child-inline li.active a, .sidebar-child-inline li.active a:hover {
+    color: #82CAFF
+}
+
+//class for sidebar tabs
+.sidebar>li>a {
+    display: block;
+    margin: 0;
+    padding: 10px 0 5px;
+    height: 100%;
+    width: 100%;
+    background-color: @sidebartwo-tab-color;
+    color: @sidebarlink-color;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 12px;
+}
+@media (max-width: 1023px) {
+    .translate-left {
+        margin-right: 0;
+        -webkit-transform: translateX(-300px);
+        transform: translateX(-300px)
+    }
+}
+@media (max-width: 801px) {
+    .side-left {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        display: block;
+        width: 100%;
+        border-top: 1px solid rgba(0, 0, 0, .25)
+    }
+    .sidebar {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center
+    }
+    .sidebar:after {
+        content: '';
+        display: table;
+        clear: both
+    }
+    .sidebar>li {
+        display: inline-block;
+        margin-right: -4px;
+        padding-bottom: 8px;
+        width: 86px;
+        border-top: 0;
+        border-bottom: 0
+    }
+    .sidebar>li.active:after, .sidebar>li.active:before {
+        display: none
+    }
+    .sidebar-child, .sidebar-child-inline {
+        top: 100%;
+        left: 0;
+        border: 1px solid #E0E4E8;
+        border-top: 0
+    }
+    .sidebar-child-inline li {
+        display: block;
+        margin: 0;
+        margin-bottom: 10px
+    }
+    .sidebar-child-inline li.divider {
+        width: 100%;
+        height: 1px
+    }
+    .content {
+        margin-left: 0
+    }
+    .content.content-sm {
+        margin-right: 0
+    }
+    .content>.content-body {
+        min-height: 200px
+    }
+}

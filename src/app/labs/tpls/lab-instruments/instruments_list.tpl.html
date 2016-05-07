@@ -1,0 +1,43 @@
+<div class="col-xs-12 content-card">
+    <h4 class="lato-light margin-b-10 fs-20">
+        Registered Instruments
+    </h4>
+    <table class="table table-hover table-condensed fs-14" id="no-more-tables">
+        <thead>
+            <tr>
+                <th class="col-md-4">Name</th>
+                <th class="col-md-3">Model</th>
+                <th class="col-md-3">Nickname</th>
+                <th class="col-md-1">In Use</th>
+                <th class="col-md-1"></th>
+            </tr>
+        </thead>
+        <tbody class="fade-content">
+            <tr  ng-repeat="instrument in lab_instruments">
+                <td class="col-md-4 pad-t-15" data-title="Name:">{{::instrument.instrument_name}}</td>
+                <td class="col-md-3 pad-t-15" data-title="Model:">
+                    {{::instrument.instrument_model_name}}
+                </td>
+                <td class="col-md-3 pad-t-15" data-title="Instrument:">
+                    {{::instrument.nickname}}
+                </td>
+                <td class="col-md-1 pad-t-15" data-title="Active">
+                    <span ng-if="instrument.active" class="fa-stack fa-lg fs-14 text-success">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span ng-if="!instrument.active" class="fa-stack fa-lg fs-14 text-danger">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-close fa-stack-1x fa-inverse"></i>
+                    </span>
+                </td>
+                <td data-title="Actions:" class="col-md-1 text-right">
+                    <a class="action-btn action-btn-grid action-btn-success" ui-sref="labs.lab_instruments.edit_instruments({instrument_id: instrument.id})">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <sil-grid-pagination> </sil-grid-pagination>
+</div>

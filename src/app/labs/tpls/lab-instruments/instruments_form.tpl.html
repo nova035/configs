@@ -1,0 +1,88 @@
+<div class="content-header">
+    <div class="action-container content-header-extra pad-r-20">
+        <a ng-if="edit_view" tooltip-placement="bottom" tooltip="Delete Drug" class="action-btn action-btn-md action-btn-default" ui-sref="lab_instruments.add_instrument">
+            <i class="fa fa-trash text-danger"></i>
+        </a>
+   </div>
+   <h2 class="content-title">
+        <span class="main-title">
+          <i class="fa {{edit_view ? 'fa-edit' : 'fa-plus-circle'}}"></i> {{edit_view ? 'Edit' : 'Add'}} Lab Instrument
+        </span>
+   </h2>
+</div>
+<div class="content-control">
+    <!--breadcrumb-->
+    <div ncy-breadcrumb></div>
+    <!--/breadcrumb-->
+</div>
+<div class="col-xs-12">
+    <div ui-view="delete"></div>
+    <div class="col-xs-12">
+      <form name="instrument_frm"  ng-submit="save(instrument_frm)" novalidate>
+        <div class="fade-content col-sm-10 col-sm-offset-1 margin-t-20 content-card">
+          <drf-err-msg></drf-err-msg>
+            <div class="col-sm-12 margin-t-20 margin-b-20">
+
+              <div class="form-group">
+                  <label class="">
+                      Manufacturer<span class="text-danger">&#42;</span>
+                  </label>
+                    <ui-select theme="bootstrap" ng-model="select_values.manufacturer" required name="manufacturer_id" api-checker register-custom-form-control ng-change="manufacturerInstruments(select_values.manufacturer)">
+                        <ui-select-match placeholder="Select a manufacturer..." allow-clear="true">
+                            <span>{{$select.selected.manufacturer_name}} {{$select.selected.name}}</span>
+                        </ui-select-match>
+                        <ui-select-choices position="down" repeat="manufacturer.id as manufacturer in manufacturers | filter:$select.search">
+                            <span>{{manufacturer.name}}</span>
+                        </ui-select-choices>
+                    </ui-select>
+              </div>
+
+              <div class="form-group">
+                    <label class="">
+                        Instrument<span class="text-danger">&#42;</span>
+                    </label>
+                    <ui-select theme="bootstrap" ng-model="select_values.instrument" required name="instrument_id" ng-change="instrumentModels(select_values.instrument)" api-checker register-custom-form-control  ng-disabled="!select_values.manufacturer">
+                        <ui-select-match placeholder="Select an instrument..." allow-clear="true">
+                            <span>{{$select.selected.instrument_name}} {{$select.selected.name}}</span>
+                        </ui-select-match>
+                        <ui-select-choices position="down" repeat="instrument.id as instrument in instruments | filter:$select.search">
+                            <span>{{instrument.name}}</span>
+                        </ui-select-choices>
+                    </ui-select>
+              </div>
+
+              <div class="form-group">
+                    <label class="control-label">Instrument Model<span class="text-danger">&#42;</span></label>
+                    <ui-select theme="bootstrap" ng-model="select_values.instrument_model" required name="instrument_model" api-checker register-custom-form-control ng-disabled="!instrument">
+                        <ui-select-match placeholder="Select an instrument model..." allow-clear="true">
+                            <span>{{$select.selected.instrument_model_name}} {{$select.selected.name}}</span>
+                        </ui-select-match>
+                        <ui-select-choices position="down" repeat="model.id as model in instrument.models | filter:$select.search">
+                            <span>{{model.name}}</span>
+                        </ui-select-choices>
+                    </ui-select>
+              </div>
+
+              <div class="form-group">
+                  <label class="control-label">Nickname</label>
+                  <input class="form-control" name="nickname" ng-model="lab_instrument.nickname"  placeholder="Nickname" api-checker/>
+              </div>
+              <div class="form-group">
+                  <input type="hidden" name="lab" ng-model="lab_instrument.lab"/>
+              </div>
+
+              <div class="form-group checkbox">
+                  <label>
+                    <input type="checkbox" id="active" name="active" ng-model="lab_instrument.active" tooltip="Check if Lab Instrument is not retired" api-checker >
+                    In Use
+                   </label>
+              </div>
+              <div class="pull-left col-sm-12 pad-0 margin-t-10 margin-b-20">
+                <button class="btn btn-primary">Save</button>
+                <a class="margin-l-10 btn btn-default margin-l-5" ui-sref="labs.lab_instruments({lab_id:lab_id})">Cancel</a>
+              </div>
+            </div>
+        </div>
+      </form>
+    </div>
+</div>

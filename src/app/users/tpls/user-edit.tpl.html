@@ -1,0 +1,57 @@
+<div class="content-header">
+   <h2 class="content-title">
+        <span class="main-title">
+          <i class="fa {{edit_view ? 'fa-edit' : 'fa-plus-circle'}}"></i> {{edit_view ? 'Edit' : 'Add'}} User
+        </span>
+   </h2>
+</div>
+<div class="col-xs-12 margin-t-20">
+    <div ui-view="delete"></div>
+    <div class="col-xs-12">
+      <form name="unit_frm"  ng-submit="save(unit_frm)" novalidate>
+        <div class="fade-content col-sm-10 col-sm-offset-1 margin-t-20 content-card">
+            <div class="col-xs-12 margin-t-10">
+              <h3 class="lato-light fw-600 fs-24">Register with us!!!</h3>
+            </div>
+            <div class="col-xs-12 margin-t-5 margin-b-5">
+              <drf-err-msg></drf-err-msg>
+            </div>
+            <div class="col-sm-12 margin-t-20 margin-b-10">
+              <div class="form-group">
+                  <label class="control-label">First Name<span class="text-danger">&#42;</span></label>
+                  <input class="form-control" name="first_name" ng-model="user.first_name" required placeholder="First Name" api-checker/>
+              </div>
+              <div class="form-group">
+              <label class="control-label">Last Name<span class="text-danger">&#42;</span></label>
+                  <input class="form-control" name="last_name" ng-model="user.last_name" required placeholder="Last Name" api-checker/>
+              </div>
+              <div class="form-group">
+              <label class="control-label">Email<span class="text-danger">&#42;</span></label>
+                  <input type="email" class="form-control" name="email" ng-model="user.email" required placeholder="Email" api-checker/>
+              </div>
+              <div class="form-group" ng-if="!edit_view">
+              <label class="control-label">Password<span class="text-danger">&#42;</span></label>
+                  <input type="password" class="form-control" name="password" ng-model="user.password" required placeholder="Password" api-checker/>
+              </div>
+              <div class="form-group checkbox">
+                  <label>
+                    <input type="checkbox" id="is_admin_contact" name="is_admin_contact" ng-model="user.is_admin_contact" tooltip="Check if user is a admin contact" api-checker >
+                    As an Investor
+                   </label>
+              </div>
+              <div class="form-group checkbox">
+                  <label>
+                    <input type="checkbox" id="is_billing_contact" name="is_billing_contact" ng-model="user.is_billing_contact" tooltip="Check if user is a billing contact" api-checker >
+                    As an Inventor
+                   </label>
+              </div>
+            </div>
+            <div class="pull-left col-xs-12 margin-t-0 margin-b-20">
+              <button class="btn btn-primary">Save</button>
+              <a class="margin-l-10 btn btn-default margin-l-5" ui-sref="dashboard">Cancel</a>
+            </div>
+        </div>
+      </form>
+    </div>
+</div>
+<div ui-view="footer"></div>

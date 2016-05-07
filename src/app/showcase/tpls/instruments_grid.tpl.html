@@ -1,0 +1,82 @@
+<div class="content-header">
+    <div class="action-container content-header-extra pad-r-20">
+        <a  tooltip-placement="bottom" tooltip="Add Instrument" class="action-btn action-btn-md action-btn-warm" ui-sref="lab_instruments.add_instrument">
+            <i class="fa fa-plus"></i>
+        </a>
+   </div>
+   <h2 class="content-title">
+        <span class="main-title">
+            <i class="fa fa-sliders"></i> Lab Instruments
+        </span>
+   </h2>
+</div>
+<div class="col-xs-12 pad-0">
+    <section class="parallax parallax-demo-two">
+      <div class="col-xs-12 margin-t-50">
+        <h1 class="text-white lato-light fs-30">Checkout our showcases of potential investments opportunities</h1>
+      </div>
+    </section>
+</div>
+<div class="col-xs-12 margin-t-30 pad-0">
+    <div class="col-md-4">
+        <div class="col-xs-12 content-card">
+            <h4 class="lato-light fs-18 margin-b-10">
+                Advanced Search
+            </h4>
+            <div class="form-group">
+                <label class="conrol-label">Indusry</label>
+                <select class="form-control" ng-model="lab_program.query">
+                    <option value="" disabled>Select Industry</option>
+                    <option ng-repeat="program in programs" ng-selected="{{program.id == analyte.program}}" value="{{program.id}}">{{program.name}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="conrol-label">Town</label>
+                <select class="form-control" ng-model="lab_program.query">
+                    <option value="" disabled>Select Town</option>
+                    <option ng-repeat="program in programs" ng-selected="{{program.id == analyte.program}}" value="{{program.id}}">{{program.name}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="col-xs-12 content-card pad-0">
+            <div class="col-xs-12 margin-t-10 margin-b-10">
+                <div class="form-group input-group">
+                    <span class="white-addon input-group-addon" id="basic-addon1">
+                      <i class="fa fa-search"></i>
+                    </span>
+                    <input class="white-input form-control" ng-model="case.query" placeholder="Search Organizaions">
+                </div>
+            </div>
+            <div class="col-xs-12 margin-b-10 fx-fade-down fx-dur-600 fx-ease-cubic fx-stagger-50" ng-repeat="case in showcases| filter : case.query" >
+                <div class="col-md-1 text-center pad-l-0">
+                    <span class="fa-stack fa-lg fs-35 text-dark-green">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-building fa-stack-1x fa-inverse fs-26"></i>
+                    </span>
+                </div>
+                <div class="col-md-11" style="border-bottom: 1px solid #e0e0e0; padding-bottom: 5px;">
+                    <h4 class="fs-18 lato-light text-dark-green margin-b-10">
+                        {{case.company_name}}
+                    </h4>
+                    <div class="col-xs-12 pad-l-0 margin-b-10">
+                        <div class="col-xs-6  pad-l-0">
+                            <span class="label label-warning fs-12">{{case.industry}}</span>
+                        </div>
+                        <div class="col-xs-6">
+                            <span class="pull-right">{{case.town}} Town</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 margin-t-5 lato-light pad-l-0">
+                        <p class="lato-light fs-14">
+                            {{case.overview}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix margin-t-10 margin-b-10"></div>
+        </div>
+    </div>
+</div>
+<div ui-view="footer"></div>

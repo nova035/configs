@@ -1,0 +1,64 @@
+<div class="content-header">
+   <h2 class="content-title">
+        <span class="main-title">{{::lab.name}}</span>
+   </h2>
+</div>
+<div class="content-control">
+    <!--breadcrumb-->
+    <div ncy-breadcrumb></div>
+    <!--/breadcrumb-->
+</div>
+
+<div class="content-body">
+    <ul class="col-xs-3 col-lg-2 margin-t-20 pad-0 margin-b-20">
+       <span class="list-title">Programs</span>
+        <li class="nav-left" ng-repeat="program in lab_programs" ng-class="{'active': css ==  $index}">
+            <a ng-click="getSubscriptions(program.id,program.program, $index)" ng-class="{'notch-right active': css ==  $index}"
+             href="">{{::program.program_name}}</a>
+        </li>
+    </ul>
+    <div class= "content-card margin-v-20 min-height-500" ng-class="{'col-xs-9 col-lg-10': !form_present,'col-xs-3 col-lg-2': form_present}">
+        <div class="col-xs-12 pad-0">
+            <h4 class="fs-16 col-xs-6 pad-0">{{form_present ? 'Program':'' }} Analytes</h4>
+            <button ng-click="form_present = !form_present" class="pull-right margin-t-10 action-btn action-btn-grid action-btn-primary" ui-sref="labs.lab_programs.create_subscription({lab_program_id:lab_program,program_id:program})" tooltip="Add Analyte" tooltip-placement="left">
+                <i class="fa fa-plus"></i>
+            </button>
+        </div>
+        <table class="table table-hover table-condensed" id="no-more-tables">
+                <thead>
+                    <tr>
+                        <th><span ng-hide="form_present">Analyte</span></th>
+                        <th ng-hide="form_present">Instrument</th>
+                        <th ng-hide="form_present">Reagent</th>
+                        <th ng-hide="form_present">Method</th>
+                        <th ng-hide="form_present">Active</th>
+                        <th ng-hide="form_present"></th>
+                    </tr>
+                </thead>
+                <tbody class="fade-content">
+                    <tr ng-repeat="subscription in subscriptions" class="fx-fade-down fx-dur-600 fx-ease-cubic fx-stagger-50">
+                        <td class="pad-t-15" data-title="Analyte:">{{::subscription.analyte_name}}</td>
+                        <td ng-hide="form_present" class="pad-t-15" data-title="Instrument:">{{::subscription.analyzer_name}}</td>
+                        <td ng-hide="form_present" class="pad-t-15" data-title="Reagent:">{{::subscription.reagent_name}}</td>
+                        <td ng-hide="form_present" class="pad-t-15" data-title="Method:">{{::subscription.method_name}}</td>
+                        <td ng-hide="form_present" class="pad-t-15" data-title="Active">
+                            <span ng-if="subscription.active" class="fa-stack fs-14 text-success">
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                              <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                            </span>
+                            <span ng-if="!subscription.active" class="fa-stack fs-14 text-danger">
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                              <i class="fa fa-close fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </td>
+                        <td ng-hide="form_present" class="text-right">
+                            <a ng-click="$parent.form_present = !$parent.form_present" ui-sref="labs.lab_programs.edit_subscription({lab_program_id:lab_program, subscription_id:subscription.id, program_id:program})" class="action-btn action-btn-grid action-btn-success" tooltip="Edit">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+        </table>
+    </div>
+    <div ui-view="form" ng-class="{'col-xs-6 col-lg-8': form_present,'': !form_present}"></div>
+</div>

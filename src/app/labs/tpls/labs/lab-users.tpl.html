@@ -1,0 +1,107 @@
+<div class="col-sm-10 fade-content col-sm-offset-1 col-xs-12">
+
+    <!-- lab user form-->
+    <div class="margin-t-20 col-xs-12" ng-show="multi.show_form" ng-class="{'':multi.show_form,'fx-zoom-normal fx-speed-400':!multi.show_form}">
+        <div class="custom-well col-xs-12">
+            <div class="col-xs-12 pad-0">
+                <h4 class="fw-600 fs-18 col-xs-6 pad-0">{{multi.edit?'Edit':'Add'}} User</h4>
+                <div class="col-xs-6">
+                    <button ng-show="multi.show_form" class="z100 pull-right btn btn-primary margin-t-10" ng-click="newUser(labuser_frm,multi)">
+                        Hide form
+                    </button>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <form name="labuser_frm" ng-submit="saveLabUser(labuser_frm,multi.edit)" novalidate>
+                    <div class="col-xs-12 pad-0 margin-t-5">
+                        <drf-err-msg></drf-err-msg>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <input type="number" name="id" ng-model="lab_user.id" hidden>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <input type="number" name="lab" ng-model="lab.id" hidden>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <label class="fs-14 control-label">User<span class="text-danger">&#42;</span></label>
+                        <ui-select ng-model="multi.select_values.user" required name="user" api-checker register-custom-form-control>
+                            <ui-select-match placeholder="Select a user..." allow-clear="true">
+                                <span>{{$select.selected.first_name}} {{$select.selected.last_name}}</span>
+                            </ui-select-match>
+                            <ui-select-choices repeat="user.id as user in users | filter:$select.search">
+                                <span>{{user.first_name}} {{user.last_name}}</span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="form-group col-xs-12 checkbox margin-t-20">
+                        <label>
+                            <input type="checkbox" id="active" name="active" ng-model="lab_user.active" tooltip="Check if Test Event is not retired" api-checker >
+                            Active
+                        </label>
+                    </div>
+                    <button class="btn btn-primary btn-sm" type="submit" >Save Lab User</button>
+                    <button class="btn btn-default btn-sm" ng-click="newUser(labuser_frm,multi)">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!--lab users -->
+    <div id="no-more-tables" class="col-xs-12 margin-t-15 fade-content" ng-if="lab_users.length>0">
+        <div class="custom-well">
+            <div class="col-xs-12 pad-0">
+                <h4 class="fw-600 fs-18 col-xs-6 pad-0">Lab Users</h4>
+                <button ng-show="!multi.show_form" class="pull-right margin-t-10 action-btn action-btn-grid action-btn-primary" ng-click="newUser(labuser_frm,multi)" tooltip="Add Lab User" tooltip-placement="left">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+            <table class="table table-hover table-condensed fs-14">
+                <thead>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Billing</th>
+                    <th>Admin</th>
+                    <th>Active</th>
+                    <th></th>
+                </thead>
+                <tbody class="example-animate-container">
+                    <tr ng-repeat="user in lab_users | filter: search.query">
+                        <td data-title="Name" class="pad-t-15">
+                            {{user.names | titlecase}}
+                        </td>
+                        <td data-title="Email" class="pad-t-15">
+                            {{user.email}}
+                        </td>
+                        <td data-title="Billing" class="pad-t-15">
+                            {{user.is_billing_contact}}
+                        </td>
+                        <td data-title="Admin" class="pad-t-15">
+                            {{user.is_admin_contact}}
+                        </td>
+                        <td data-title="Active" class="pad-t-15">
+                            {{user.active | boolFilter }}
+                        </td>
+                        <td class="text-right">
+                            <a ng-click="editUser(labuser_frm,user,multi)" class="action-btn action-btn-grid action-btn-success" tooltip="Edit">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-xs-12" ng-if="lab_users.length===0">
+        <div class="alert alert-info" role="alert">
+           <span class="fs-18"><i class="fa fa-info-circle"></i> Please add a user to the lab to proceed.</span>
+        </div>
+    </div>
+    <!--end of lab users-->
+
+
+    <div class="col-xs-12 margin-v-20">
+        <button class="btn btn-default" wz-previous >Lab Programs</button>
+        <button class="btn btn-primary pull-right" wz-next="multi.exitValidation">Lab Contacts</button>
+    </div>
+</div>

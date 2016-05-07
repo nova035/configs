@@ -1,0 +1,82 @@
+<div class="fx-fade-up fx-dur-600 fx-ease-cubic" ng-show="form_present">
+    <div ui-view="delete"></div>
+    <div class="">
+      <form name="unit_frm"  ng-submit="save(unit_frm)" novalidate>
+        <div class="col-xs-12 margin-t-20 content-card">
+            <h2 class="content-title">
+                 <span class="main-title">
+                  <i class="fa {{edit_view ? 'fa-edit' : 'fa-plus-circle'}}"></i> {{edit_view ? 'Edit' : 'Add'}} Analyte
+                </span>
+            </h2>
+          <drf-err-msg2></drf-err-msg2>
+            <div class="col-sm-12 margin-t-20 margin-b-20">
+              <div class="form-group">
+                    <label class="control-label">Analyte<span class="text-danger">&#42;</span></label>
+                    <ui-select theme="bootstrap" ng-change="getConfigurationsAnalyte(select_values.analyte)" ng-model="select_values.analyte" required name="analyte" api-checker register-custom-form-control>
+                        <ui-select-match placeholder="Select a analyte..." allow-clear="true">
+                            <span>{{$select.selected.analyte_name}} {{$select.selected.name}}</span>
+                        </ui-select-match>
+                        <ui-select-choices position="down" repeat="analyte.id as analyte in analytes | filter:$select.search">
+                            <span>{{analyte.name}}</span>
+                        </ui-select-choices>
+                    </ui-select>
+              </div>
+               <div class="form-group">
+                  <label class="control-label">Unit<span class="text-danger">&#42;</span></label>
+                    <ui-select ng-model="select_values.unit" required name="unit" api-checker register-custom-form-control ng-disabled="!select_values.analyte">
+                        <ui-select-match placeholder="Select a unit..." allow-clear="true">
+                            <span>{{$select.selected.unit_name}}  {{$select.selected.name}}</span>
+                        </ui-select-match>
+                        <ui-select-choices position="down" repeat="unit.unit as unit in units | filter:$select.search">
+                            <span>{{unit.unit_name}} {{unit.name}}</span>
+                        </ui-select-choices>
+                    </ui-select>
+              </div>
+              <div class="form-group">
+              <label class="control-label">Instrument<span class="text-danger">&#42;</span></label>
+                    <ui-select ng-model="select_values.analyzer" required name="analyzer" api-checker register-custom-form-control>
+                        <ui-select-match placeholder="Select an instrument..." allow-clear="true">
+                            <span>{{$select.selected.analyzer_name}} {{$select.selected.instrument_model_name}}</span>
+                        </ui-select-match>
+                        <ui-select-choices position="down" repeat="analyzer.id as analyzer in analyzers | filter:$select.search">
+                            <span>{{analyzer.instrument_model_name}}</span>
+                        </ui-select-choices>
+                    </ui-select>
+              </div>
+              <div class="form-group">
+              <label class="control-label">Reagent</label>
+                    <ui-select ng-change="getConfigurationsAnalyteReagent(select_values.analyte,select_values.reagent)" ng-model="select_values.reagent" required name="reagent"  ng-disabled="!select_values.analyte">
+                        <ui-select-match placeholder="Select a reagent..." allow-clear="true">
+                            <span>{{$select.selected.reagent_name}}  {{$select.selected.name}}</span>
+                        </ui-select-match>
+                        <ui-select-choices position="down" repeat="reagent.reagent as reagent in configurations | filter:$select.search">
+                            <span>{{reagent.reagent_name}}</span>
+                        </ui-select-choices>
+                    </ui-select>
+              </div>
+              <div class="form-group">
+                  <label class="control-label">Method<span class="text-danger">&#42;</span></label>
+                    <ui-select ng-model="select_values.method" required name="method" api-checker register-custom-form-control  ng-disabled="!select_values.analyte || !select_values.reagent">
+                        <ui-select-match placeholder="Select a method..." allow-clear="true">
+                            <span>{{$select.selected.method_name}}</span>
+                        </ui-select-match>
+                        <ui-select-choices position="down" repeat="method.id as method in configurations | filter:$select.search">
+                            <span>{{method.method_name}}</span>
+                        </ui-select-choices>
+                    </ui-select>
+              </div>
+              <div class="form-group checkbox">
+                  <label>
+                    <input type="checkbox" id="is_active" name="active" ng-model="subscription.active" tooltip="Check if subscription is not retired" api-checker >
+                    Active
+                   </label>
+              </div>
+            </div>
+        </div>
+        <div class="pull-left pad-0 margin-t-10 margin-b-20">
+          <button class="btn btn-primary">Save</button>
+          <a class="margin-l-10 btn btn-default margin-l-5" ui-sref="labs.lab_programs({lab_id:lab_id})" ui-sref-opts="{reload:true}">Cancel</a>
+        </div>
+      </form>
+    </div>
+</div>

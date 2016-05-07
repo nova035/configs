@@ -1,0 +1,33 @@
+machine:
+    node:
+        version: 4.1.0
+
+    environment:
+        PATH: "$(npm bin):$PATH"
+        RELEASE_ASSET: "$CIRCLE_PROJECT_REPONAME"
+        PACKAGE_JSON: "package.json"
+
+
+test:
+    override:
+        - bash ci_test.sh:
+            parallel: true
+            environment:
+                LOG_FOLDER: "$HOME/$CIRCLE_PROJECT_REPONAME/_logs_"
+                BUILD_DIR: "$HOME/$CIRCLE_PROJECT_REPONAME"
+
+#deployment:
+#    release:
+#        branch: bump-release
+#        owner: savannahinformatics
+#        commands:
+#            - grunt default
+#            - tar cvzf "$RELEASE_ASSET" bin
+#            - sudo pip install github3.py
+#            - python deploy.py
+
+
+general:
+    artifacts:
+        - "_logs_"
+        - "coverage"

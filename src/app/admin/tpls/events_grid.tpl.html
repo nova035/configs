@@ -1,0 +1,289 @@
+<div class="content-header">
+    <div class="action-container content-header-extra pad-r-20">
+        <a  tooltip-placement="bottom" tooltip="New Test Event" class="action-btn action-btn-md action-btn-default" ui-sref="dashboard.events.add_event">
+            <i class="fa fa-plus"></i>
+        </a>
+   </div>
+   <h2 class="content-title">
+        <span class="main-title">
+        </span>
+   </h2>
+</div>
+<div class="col-xs-12 margin-t-30">
+    <!-- Inventor ideation and showcase -->
+    <div class="col-md-10 col-md-offset-1 col-xs-12 pad-l-0 margin-b-10 fade-content" ng-if="!loggedInUser.is_staff">
+        <h2 class="lato-light fs-18 fw-600">
+            {{user_showcase.company_name | uppercase}}
+        </h2>
+        <h4 class="lato-light fs-14 fw-500">
+            <span class="text-grey">
+                <i class="fa fa-map-marker"></i> {{user_showcase.town}} Town, &nbsp; <i class="fa fa-bank"></i> {{user_showcase.industry}} Industry
+            </span>
+        </h4>
+    </div>
+    <div class="col-md-10 col-md-offset-1 col-xs-12 content-card" ng-if="!loggedInUser.is_staff">
+        <div class="col-md-3 card-section pad-l-0 pad-r-0">
+            <span class="card-bg-overlay text-center fade-content">
+                <i class="fa fa-camera"></i> Update Logo
+            </span>
+            <span class="card-img fa-stack fa-lg fs-120 text-dark-green fade-content">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-building fa-stack-1x fa-inverse fs-95"></i>
+            </span>
+            <div class="col-xs-12 margin-t-10 fade-content">
+                <div class="col-xs-12">
+                    <h4 class="text-left fs-18 fw-500">Contacts</h4>
+                </div>
+            </div>
+            <div class="col-xs-12 margin-t-10 pad-r-0 fade-content">
+                <div class="col-xs-12 text-left margin-b-10" ng-repeat="contact in user_showcase.contacts">
+                    <span class="col-md-2 pad-l-0" ng-if="contact.type === 'phone'">
+                        <i class="fs-17 fa fa-phone"></i>
+                    </span>
+                    <span class="col-md-2 pad-l-0" ng-if="contact.type === 'email'">
+                        <i class="fs-17 fa fa-envelope"></i>
+                    </span>
+                    <span class="col-md-2 pad-l-0" ng-if="contact.type === 'address'">
+                        <i class="fs-17 fa fa-map-marker"></i>
+                    </span>
+                    <span class="col-md-10 pad-0 fs-13 lato-light text-dark-grey">
+                        {{contact.contact}}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 card-sideview">
+            <div class="col-xs-12 margin-t-10">
+                <h3 class="fs-20 lato-light fade-content">
+                    <i class="fa fa-signal fs-18"></i> &nbsp;Business Idea
+                    <span class="pull-right" ng-click="showIdea('idea_frm')">
+                        <i class="fa fa-pencil fs-20 card-pencil"></i>
+                    </span>
+                </h3>
+            </div>
+            <div class="col-xs-12 margin-t-20">
+                <p class="fs-14 text-dark-grey fade-content" ng-if="show.idea">
+                    {{user_showcase.idea}}
+                </p>
+                <div ng-if="!show.idea" class="col-xs-12 pad-0 fade-content">
+                    <form name="idea_frm"  ng-submit="save(idea_frm)" novalidate>
+                        <div class="form-group">
+                            <textarea class="form-control" name="idea" placeholder="Enter you Business Idea..." ng-model="user_showcase.idea" rows="4"></textarea>
+                        </div>
+                        <div class="col-xs-12 pad-l-0 margin-t-10">
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                <i class="fa fa-save"></i> Save
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-xs-12 margin-t-30">
+                <h3 class="fs-20 lato-light fade-content">
+                    <i class="fa fa-suitcase fs-18"></i> &nbsp;Showcase
+                    <span class="pull-right" ng-click="showIdea('case_frm')">
+                        <i class="fa fa-pencil fs-20 card-pencil"></i>
+                    </span>
+                </h3>
+            </div>
+            <div class="col-xs-12 pad-0" ng-if="show.show_case">
+                <div class="col-xs-12 margin-t-20">
+                    <p class="fs-14 text-dark-grey fade-content">
+                        {{user_showcase.industry}} Industry
+                    </p>
+                </div>
+                <div class="col-xs-12 margin-t-5">
+                    <p class="fs-14 text-dark-grey fade-content">
+                        {{user_showcase.overview}}
+                    </p>
+                </div>
+            </div>
+            <div class="col-xs-12 margin-t-10 fade-content" ng-if="!show.show_case">
+                <form name="case_frm"  ng-submit="save(case_frm)" novalidate>
+                    <div class="form-group">
+                        <select class="form-control fw-500" name="industry" ng-model="user_showcase.industry">
+                            <option value="" disabled>Select Industry</option>
+                            <option value="1">IT Industry</option>
+                            <option value="2">Agriculture Industry</option>
+                            <option value="2">Medical Industry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" name="overview" placeholder="Enter an overview of what you company does..." ng-model="user_showcase.overview" rows="4"></textarea>
+                    </div>
+                    <div class="col-xs-12 pad-l-0 margin-t-10">
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="fa fa-save"></i> Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-xs-12 margin-t-30 margin-b-20">
+                <h3 class="fs-20 lato-light">
+                    <i class="fa fa-phone fs-18"></i> &nbsp;Contacts
+                    <span class="pull-right" ng-click="showIdea('contacts_frm')">
+                        <i class="fa fa-pencil fs-20 card-pencil"></i>
+                    </span>
+                </h3>
+            </div>
+            <div class="col-xs-12 pad-0 fade-content" ng-if="show.contacts">
+                <div class="col-xs-12 text-left margin-b-10">
+                    <span class="col-md-2 pad-l-0">
+                        Town
+                    </span>
+                    <span class="col-md-10 pad-0 fs-13 lato-light text-dark-grey">
+                        {{user_showcase.town}}
+                    </span>
+                </div>
+                <div class="col-xs-12 text-left margin-b-10" ng-repeat="contact in user_showcase.contacts">
+                    <span class="col-md-2 pad-l-0" ng-if="contact.type === 'phone'">
+                        Mobile Phone
+                    </span>
+                    <span class="col-md-2 pad-l-0" ng-if="contact.type === 'email'">
+                        Email Address
+                    </span>
+                    <span class="col-md-2 pad-l-0" ng-if="contact.type === 'address'">
+                        Postal Address
+                    </span>
+                    <span class="col-md-10 pad-0 fs-13 lato-light text-dark-grey">
+                        {{contact.contact}}
+                    </span>
+                </div>
+            </div>
+            <div class="col-xs-12 fade-content" ng-if="!show.contacts">
+            <form name="contacts_frm" novalidate ng-submit="save(contacts_frm)">
+                <div class="form-group input-group pad-t-5">
+                    <span class="white-addon input-group-addon" id="basic-addon1">
+                      <i class="fa fa-map-marker"></i>
+                    </span>
+                    <select class="white-input form-control fw-500" name="industry" ng-model="user_showcase.town">
+                        <option value="" disabled>Select Town</option>
+                        <option value="1">Nairobi</option>
+                        <option value="2">Mombasa</option>
+                        <option value="2">Machakos</option>
+                    </select>
+                </div>
+                <div class="form-group input-group pad-t-5" ng-repeat="contact in user_showcase.contacts">
+                    <span ng-if="contact.type === 'phone'" class="white-addon input-group-addon" id="basic-addon1">
+                      <i class="fa fa-phone"></i>
+                    </span>
+                    <input ng-if="contact.type === 'phone'" class="white-input form-control fw-500" name="contact{{$index}}" ng-model="contact.contact" Placeholder="Enter phone number">
+                    <span ng-if="contact.type === 'email'" class="white-addon input-group-addon" id="basic-addon1">
+                      <i class="fa fa-at"></i>
+                    </span>
+                    <input ng-if="contact.type === 'email'" class="white-input form-control fw-500" name="contact{{$index}}" ng-model="contact.contact" placeholder="Enter email">
+                    <span ng-if="contact.type === 'address'" class="white-addon input-group-addon" id="basic-addon1">
+                      <i class="fa fa-envelope"></i>
+                    </span>
+                    <input ng-if="contact.type === 'address'" class="white-input form-control fw-500" name="contact{{$index}}" ng-model="contact.contact" placeholder="Enter Address">
+                </div>
+                <div class="col-xs-12 pad-l-0 margin-t-10">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa fa-save"></i> Save
+                    </button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    <!-- Admin listing of inventor ideas -->
+    <div class="col-md-10 col-md-offset-1 col-xs-12 pad-l-0 margin-b-10" ng-if="loggedInUser.is_staff">
+        <h2 class="lato-light fs-18 fw-600">
+            Business Ideas
+        </h2>
+    </div>
+    <div class="col-md-10 col-md-offset-1 col-xs-12 content-card" ng-if="loggedInUser.is_staff" style="padding: 0px;">
+        <table class="table table-hover">
+            <thead>
+                <th class="col-xs-12 pad-l-0 text-black fs-18 fw-500">
+                    <div class="col-xs-12">
+                        <div class="form-group input-group pad-t-5">
+                            <span class="white-addon input-group-addon" id="basic-addon1">
+                              <i class="fa fa-search"></i>
+                            </span>
+                            <input class="white-input form-control" ng-model="chat.query" placeholder="Search Ideas...">
+                        </div>
+                    </div>
+                </th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="idea in showcases">
+                    <td class="col-xs-12 fs-14 pad-0" ng-click="showDetail(idea)">
+                        <div class="col-xs-12 pad-t-5 margin-b-10 fade-content row-detail" ng-if="!idea.details" tooltip="Click to view idea details">
+                            <div class="col-md-1 pad-t-5">
+                                <span class="card-img fa-stack fa-lg fs-22 text-dark-green">
+                                  <i class="fa fa-circle fa-stack-2x"></i>
+                                  <i class="fa fa-user-secret fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </div>
+                            <div class="col-md-2 pad-l-0 text-black fs-16 pad-t-10 lato-light text-black">
+                                {{idea.owner_name}}
+                            </div>
+                            <div class="col-md-9 pad-l-0 pad-t-10 lato-light text-dark-grey fs-15">
+                                {{idea.idea | limitTo : 150}}{{idea.idea.length > 150 ? '...' : ''}}
+                            </div>
+                        </div>
+                        <div class="row row-card pad-t-10 pad-b-10" ng-if="idea.details">
+                            <div class="col-xs-12 pad-0 fade-content card-container">
+                                <div class="col-xs-12 fs-18 pad-t-10 pad-b-10 fw-600 lato-light" style="border-bottom: 1px solid #eeeeee;">
+                                    {{idea.owner_name}}
+                                    <span class="pull-right">
+                                        <a ui-sref="messages({user_id : idea.user})" class="action-btn action-btn-grid action-btn-primary" tooltip="click to chat with {{idea.owner_name}}">
+                                            <i class="fa fa-comments-o fs-18 "></i>
+                                        </a>
+                                    </span>
+                                </div>
+                                <div class="col-xs-12 pad-t-15 pad-b-10 row-content">
+                                    <div class="col-md-1">
+                                        <span class="card-img fa-stack fa-lg fs-30 text-dark-green">
+                                          <i class="fa fa-circle fa-stack-2x"></i>
+                                          <i class="fa fa-building fa-stack-1x fa-inverse fs-26"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-11">
+                                        <p class="fs-16 text-black">Business Idea</p>
+                                        <p class="fs-14 text-dark-grey lato-light">{{idea.idea}}</p>
+                                        <p class="fs-16 text-black margin-t-20">
+                                            Showcase
+                                        </p>
+                                        <p class="fs-14 text-dark-grey lato-light margin-b-10">
+                                            <span class="label label-warning fs-12">{{idea.industry}} Industry
+                                        </p>
+                                        <p class="fs-14 text-dark-grey lato-light margin-t-15">
+                                            {{idea.overview}}
+                                        </p>
+                                        <div class="col-xs-12 pad-l-0 margin-t-10">
+                                            <span class="col-md-2 pad-l-0">
+                                                Town
+                                            </span>
+                                            <span class="col-md-10 pad-0 fs-13 lato-light text-dark-grey">
+                                                {{idea.town}}
+                                            </span>
+                                        </div>
+                                        <div class="col-xs-12 text-left pad-l-0 margin-t-10" ng-repeat="contact in idea.contacts">
+                                            <span class="col-md-2 pad-l-0 text-black fs-13" ng-if="contact.type === 'phone'">
+                                                Mobile Phone
+                                            </span>
+                                            <span class="col-md-2 pad-l-0 text-black fs-13" ng-if="contact.type === 'email'">
+                                                Email Address
+                                            </span>
+                                            <span class="col-md-2 pad-l-0 text-black fs-13" ng-if="contact.type === 'address'">
+                                                Postal Address
+                                            </span>
+                                            <span class="col-md-10 pad-0 fs-13 lato-light text-dark-grey">
+                                                {{contact.contact}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 margin-t-5" style="bottom: 0; height: 30px; border-top: 1px solid #E0E4E8">
+
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

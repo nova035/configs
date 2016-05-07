@@ -1,0 +1,14 @@
+<div class="margin-t-10">
+    <ul class="steps-indicator steps-{{getEnabledSteps().length}}" ng-if="!hideIndicators">
+      <li ng-class="{default: !step.completed && !step.selected, current: step.selected && !step.completed, done: step.completed && !step.selected, editing: step.selected && step.completed}" ng-repeat="step in getEnabledSteps()">
+        <a ng-click="goTo(step)">
+            <div class="progress-badge"
+                ng-class="{'progress-badge-active': (step.selected && !step.completed) || (step.selected && step.completed), 'progress-badge-done' : (step.completed && !step.selected)}">
+                {{$index + 1}}
+            </div>
+            <p class="step-label" ng-class="{'step-label-active':(step.selected && !step.completed) || (step.selected && step.completed),'step-label-done':(step.completed && !step.selected)}">{{step.title || step.wzTitle}}</p>
+        </a>
+      </li>
+    </ul>
+    <div class="steps" ng-transclude></div>
+</div>

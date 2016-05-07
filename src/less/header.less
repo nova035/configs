@@ -1,0 +1,158 @@
+/*Adds the header's theme */
+.header {
+/*position: relative;*/
+padding: 0 0px;
+display: block;
+height: 60px;
+background: #FFFFFF;
+color: #fff !important;
+border-bottom: 1px solid 221E53;
+z-index: 1000;
+box-shadow : 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+.header-brand {
+    float: left;
+    display: block;
+    font-size:20px;
+    margin-top: 15px;
+    margin-right: 20px;
+}
+
+.header-brand h1, .header-brand h2, .header-brand h3, .header-brand h4, .header-brand h5, .header-brand h6 {
+margin: 0;
+padding: 0;
+line-height: 60px;
+font-size: 2.3em;
+font-family: @sansAclonia;
+color: #fff;
+}
+
+.header-brand h1:hover, .header-brand h2, .header-brand h3, .header-brand h4, .header-brand h5, .header-brand h6 {
+margin: 0;
+padding: 0;
+line-height: 60px;
+font-size: 2.3em;
+font-family: @sansAclonia;
+color: #fff;
+}
+.header-container {
+    height: 100%;
+}
+
+.navbar {
+    margin-bottom: -8px !important;
+    border-radius: 0px;
+    min-height : 70px !important;
+}
+.navbar-default {
+    border-color: transparent;
+}
+
+.navbar-nav > li {
+    margin-top: 0px !important;
+    height: 100%;
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+}
+
+.navbar-nav > li > a {
+    padding-top: 14px !important;
+    padding-bottom: 19px !important;
+    background-color: @white;
+    color: @header-item-color;
+}
+.navbar-nav > li:hover > a {
+    color: #00796B !important;
+    background-color: #FFFFFF;
+}
+
+.navbar-nav > li:hover > a:active {
+    /*color: @header-item-color;*/
+    color : #2196F3;
+    background-color: #FFFFFF !important;
+}
+.navbar-nav > li:hover, .navbar-nav > li:active {
+    /*background-color: @header-item-color !important;*/
+    border-bottom: solid 3px #00796B;
+     -webkit-transition: border-bottom 70ms ease-out 70ms;
+    -moz-transition: border-bottom 70ms ease-out 70ms;
+    -o-transition: border-bottom 70ms ease-out 70ms;
+    transition: border-bottom 70ms ease-out 70ms;
+}
+
+.navbar-nav > li:focus,.navbar-default .navbar-nav > .active > a {
+    color: @header-item-color !important;
+    background-color: #FFFFFF !important;
+    border-bottom: solid 3px #009688;
+    -webkit-transition: border-bottom 70ms ease-out 70ms;
+    -moz-transition: border-bottom 70ms ease-out 70ms;
+    -o-transition: border-bottom 70ms ease-out 70ms;
+    transition: border-bottom 70ms ease-out 70ms;
+    -webkit-transition: background-color 70ms ease-out 70ms;
+    -moz-transition: background-color 70ms ease-out 70ms;
+    -o-transition: background-color 70ms ease-out 70ms;
+    transition: background-color 70ms ease-out 70ms;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+    font-weight: 900;
+    background: rgba(0, 157, 255, 0.81);
+    box-shadow: inset 0 0px 0 white, inset 0 -2px 0 white;
+    -webkit-transition: background-color 70ms ease-out 70ms;
+    -moz-transition: background-color 70ms ease-out 70ms;
+    -o-transition: background-color 70ms ease-out 70ms;
+    transition: background-color 70ms ease-out 70ms;
+}
+
+.navbar-nav > li:focus,.navbar-default .navbar-nav > .active > a:hover{
+    color: lighten(@header-item-color, 5%);
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    color: @header-item-color !important;
+    background-color: #FFFFFF !important;
+    border-bottom: solid 3px #009688;
+}
+
+.inner-nav{
+    border-color:transparent;
+    border-radius:0px;
+    z-index:50;
+    height:40px;
+    margin-bottom: -8px !important;
+    padding:0px;
+    margin-top:8px;
+    background:#57B1FF;
+}
+.inner-nav-color{
+    background-color:#57B1FF
+}
+.navbar-nav {
+    margin: 0 -15px;
+}
+.navbar-header {
+    padding-bottom: 10px;
+}
+.border-nav{
+    border-bottom: 1px solid @header-item-color;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: white;
+    background-color: #009688;
+}
+/*This makes the main navbar collapse from 1199px solution for users such as national admin whose navabar break*/
+@grid-float-breakpoint:     @screen-sm-max;
+.not-counter {
+    position: absolute;
+    font-style: normal;
+    background: #f44336;
+    padding: 1px 5px;
+    border-radius: 2px;
+    right: 7px;
+    top: -3px;
+    font-size: 11px;
+    color: #FFFFFF;
+    line-height: 15px;
+}

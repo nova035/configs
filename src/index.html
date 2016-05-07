@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!--[if lt IE 10]>
+    <html lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Huqas EQA</title>
+    <% styles.forEach( function ( file ) { %>
+    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+    </head>
+    <section class="section">
+        <div style="padding:100px 50px 50px 50px;min-height:400px">
+            <h1><strong>HuQAS EQA website:</strong></h1>
+            <h1>Your browser version is not supported. Please update your browser.</h1>
+               <h2>You may install any of the latest versions of the following browsers:</h2>
+                <div class="container-fluid" style="margin-top:30px;margin-bottom:30px;">
+                    <div class="row-fluid">
+                        <div class="col-xs-3 row-fluid">
+                           <a target="blank" href="https://www.google.com/chrome/browser/desktop/index.html"><i class="sprite sprite-chrome"></i></a>
+                            Chrome
+                        </div>
+                        <div class="col-xs-3 row-fluid">
+                           <a target="blank" href="https://www.mozilla.org/en-US/firefox/new/"><i class="sprite sprite-firefox"></i></a>
+                            Firefox
+                        </div>
+                        <div class="col-xs-3 row-fluid">
+                           <a target="blank" href="http://windows.microsoft.com/en-us/internet-explorer/download-ie"><i class="sprite sprite-ie"></i></a>
+                            Internet Explorer
+                        </div>
+                        <div class="col-xs-3 row-fluid">
+                           <a target="blank" href="http://www.opera.com/computer"><i class="sprite sprite-opera"></i></a>
+                            Opera
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </section>
+<![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-js indexeddb" lang="en" ng-app="huqasApp">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+         <title>KONZA</title>
+         <% styles.forEach( function ( file ) { %>
+        <link rel="icon"  href="" />
+        <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+        <style>
+        </style>
+    </head>
+    <noscript>
+        <section class="section">
+            <div style="padding:50px 50px 50px 50px;height:100vh">
+                <h1><strong>HuQAS EQA:</strong></h1>
+                <h2>The browser has JavaScript disabled or is not supported. Please enable Javascript or update your browser.</h2>
+                    <h3>You may install any of the latest versions of the following browsers:</h3>
+                    <div class="container-fluid" style="margin-top:30px">
+                        <div class="row-fluid">
+                            <div class="col-xs-3">
+                               <a target="blank" href="https://www.google.com/chrome/browser/desktop/index.html"><i class="sprite sprite-chrome"></i></a>
+                                Chrome
+                            </div>
+                            <div class="col-xs-3">
+                               <a target="blank" href="https://www.mozilla.org/en-US/firefox/new/"><i class="sprite sprite-firefox"></i></a>
+                                Firefox
+                            </div>
+                            <div class="col-xs-3">
+                               <a target="blank" href="http://windows.microsoft.com/en-us/internet-explorer/download-ie"><i class="sprite sprite-ie"></i></a>
+                                Internet Explorer
+                            </div>
+                            <div class="col-xs-3">
+                               <a target="blank" href="http://www.opera.com/computer"><i class="sprite sprite-opera"></i></a>
+                                Opera
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </section>
+    </noscript>
+<!--<![endif]-->
+    <body>
+        <div ui-view="main" class="margin-t-1 container-fluid">
+            <div>
+                <div class="main-ui-view-loader">
+                    <div class="loader"></div>
+                    <div class="row">
+                        <h3 class="text-center loader-text">Please wait...</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- compiled JavaScript -->
+        <% scripts.forEach( function ( file ) { %>
+        <script type="text/javascript" src="<%= file %>"></script><% }); %>
+        <toasty></toasty>
+    </body>
+</html>

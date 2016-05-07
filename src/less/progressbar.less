@@ -1,0 +1,160 @@
+.new-progress {
+    line-height: 20px !important;
+}
+
+.new-progress .progree-bar {
+    line-height: 20px !important;
+}
+
+.progress-badge {
+    display: inline-block;
+    color: #666;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 14px 18px 14px 18px;
+    font-size: 16px;
+    line-height: 1.2857143;
+    border-radius: 50%;
+    box-shadow: 0px 2px 7px 0 rgba(0, 0, 0, 0.26);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.progress-badge-active {
+    color: #FFF !important;
+    border: 1px solid darken(#2196F3, 5%) !important;
+    background-color: #2196F3 !important;
+    -webkit-transition: background-color 100ms ease-in 100ms;
+    -moz-transition: background-color 100ms ease-in 100ms;
+    -o-transition: background-color 100ms ease-in 100ms;
+    transition: background-color 100ms ease-in 100ms;
+}
+.progress-badge-active:hover {
+    cursor: pointer;
+    border: 1px solid darken(#2196F3, 8%) !important;
+    box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.86);
+    transform: scale(1.1);
+    .step-label-active {
+        text-decoration: underline;
+        -webkit-animation:swing 3600ms ease-in-out 6000s;
+        -webkit-transform-origin:top;
+    }
+}
+.progress-badge-done {
+    color: #000;
+    border: 1px solid #009688;
+    -webkit-transition: background-color 100ms ease-in 100ms;
+    -moz-transition: background-color 100ms ease-in 100ms;
+    -o-transition: background-color 100ms ease-in 100ms;
+    transition: background-color 100ms ease-in 100ms;
+}
+.progress-badge-done:hover + .step-label-done {
+    transform: scale(1.1);
+    animation: pulse 1s ease infinite;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+}
+.progress-badge-done:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+.progress-badge-sm {
+    width: 15%;
+}
+.lateral-divider {
+    margin-top: -2px;
+    border: 3px solid lighten(#F0F0F0, 5%);
+    box-shadow: 0px 2px 7px 0 rgba(0, 0, 0, 0.26);
+}
+.lateral-divider-active {
+    cursor: pointer;
+    border: 3px solid lighten(#2196F3, 5%) !important;
+    -webkit-transition: background-color 100ms ease-in 100ms;
+    -moz-transition: background-color 100ms ease-in 100ms;
+    -o-transition: background-color 100ms ease-in 100ms;
+    transition: background-color 100ms ease-in 100ms;
+}
+.step-label {
+    color: #000;
+    font-weight: 800;
+    font-size: 14px;
+    font-family: 'Lato Light', sans-serif;
+}
+.step-label-active {
+    font-family : 'Lato', sans-serif;
+    color: #2196F3 !important;
+    font-weight: 900;
+    -webkit-transition: color 100ms ease-in 100ms;
+    -moz-transition: color 100ms ease-in 100ms;
+    -o-transition: color 100ms ease-in 100ms;
+    transition: color 100ms ease-in 100ms;
+}
+.step-label-active:hover {
+    cursor: pointer;
+}
+.step-label-done {
+    color: #009688;
+    font-family : 'Lato', sans-serif;
+    font-weight: 900;
+    -webkit-transition: color 100ms ease-in 100ms;
+    -moz-transition: color 100ms ease-in 100ms;
+    -o-transition: color 100ms ease-in 100ms;
+    transition: color 100ms ease-in 100ms;
+}
+.step-label-done:hover {
+    cursor: pointer;
+}
+.progress-container {
+    margin-left: 0px !important;
+    width: 100%;
+    display: inline-flex;
+    -webkit-transition: 1s ease-in-out;
+    -moz-transition: 1s ease-in-out;
+    -o-transition: 1s ease-in-out;
+    transition: 1s ease-in-out;
+}
+.margin-l--10 {
+    margin-left: -10px;
+}
+.margin-l-25 {
+    margin-left: 25px;
+}
+.margin-l--60 {
+    margin-left: -60px;
+}
+.margin-l-50 {
+    margin-left: 50px;
+}
+/*pulse animation*/
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+/*Stretching out font-awesome icon*/
+.stretch {
+    font-weight: 600;
+    font-size: 18px;
+    transform:scale(2,1); /* W3C */
+    -webkit-transform:scale(5,1); /* Safari and Chrome */
+    -moz-transform:scale(5,1); /* Firefox */
+    -ms-transform:scale(5,1); /* IE 9 */
+    -o-transform:scale(5,1); /* Opera */
+}
